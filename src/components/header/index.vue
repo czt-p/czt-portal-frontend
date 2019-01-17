@@ -2,7 +2,7 @@
     <div id='head_top'>
         <div class="top">
             <div class="logo">
-                <img src="../../assets/images/index/memu_logo.png" alt="logo">
+                <img :src=logoUrl alt="logo">
             </div>
             <div class="menu">
                 <el-menu
@@ -11,15 +11,15 @@
                     mode="horizontal"
                     @select="handleSelect"
                     background-color="transparent"
-                    text-color="#fff"
+                    text-color="#353C45"
                     :router='true'
                     active-text-color="rgba(13,112,238,1)">
-                    <el-menu-item index="/">首页</el-menu-item>
-                    <el-menu-item index="2">高企评测</el-menu-item>
-                    <el-menu-item index="3">高企资助查询</el-menu-item>
-                    <el-menu-item index="4">高企成本核算</el-menu-item>
-                    <el-menu-item index="5">高企问答</el-menu-item>
-                    <el-menu-item index="about">关于我们</el-menu-item>
+                    <el-menu-item index="/home">首页</el-menu-item>
+                    <el-menu-item index="/evaluating">高企评测</el-menu-item>
+                    <el-menu-item index="/subsidize">高企资助查询</el-menu-item>
+                    <el-menu-item index="/costing">高企成本核算</el-menu-item>
+                    <el-menu-item index="/FAQs">高企问答</el-menu-item>
+                    <el-menu-item index="/about">关于我们</el-menu-item>
                 </el-menu>
             </div>
         </div>
@@ -39,15 +39,36 @@
     	data() {
             return {
                 activeIndex: '/',
-                breadArr:[
-                    {path:'2',title:'专题分析'},
-                    {path:'2',title:'客运行业'},
-                    {path:'2',title:'客运行业总体概览'},
-                ],
+                menuColor:'#fff',
+                logoUrl:require('../../assets/images/index/logo2.png'),
             };
         },
-       
         props: [],
+        watch:{
+            '$route':{
+                handler:function(val){
+                    // console.log('route',val)
+                    this.watchScroll();
+                    this.activeIndex = val.path;
+                    if(val.path == '/newRate' || val.path == '/rateResult'){
+                        this.activeIndex = '/evaluating';
+                    }
+                    // if(val.path == '/' || val.path == '/home'){
+                    //     this.menuColor = '#fff';
+                    //     this.logoUrl = require('../../assets/images/index/memu_logo.png')
+                    //     $('#app').css({'paddingTop':'0px'});
+                    //     $('.top').css({'background':'transparent'});
+                    //     $('.lineF').show();
+                    // }else{
+                        this.menuColor = '#353C45';
+                        // this.logoUrl = require('../../assets/images/index/logo2.png')
+                        $('.lineF').hide();
+                        $('#app').css({'paddingTop':'70px'});
+                        $('.top').css({'background':'#fff'});
+                    // }
+                }
+            }
+        },
         computed: {
             ...mapState([
 
@@ -55,36 +76,31 @@
         },
         methods: {
             handleSelect(key, keyPath) {
-                // console.log(key, keyPath);
-                // if(keyPath.length===3){
-                //     this.breadArr = [
-                //         {title:$('.target'+keyPath[0]+' .el-submenu__title').text(),path:keyPath[0]},
-                //         {title:$('.target'+keyPath[1]+' .el-submenu__title').text(),path:keyPath[1]},
-                //         {title:$('.target'+keyPath[2]).text(),path:keyPath[2]},
-                //     ]
-                // }else if(keyPath.length===2){
-                //     this.breadArr = [
-                //         {title:$('.target'+keyPath[0]+' .el-submenu__title').text(),path:keyPath[0]},
-                //         {title:$('.target'+keyPath[1]).text(),path:keyPath[1]},
-                //     ]
-                // }else if(keyPath.length===1){
-                //     this.breadArr = [
-                //         {title:$('.target'+keyPath[0]).text(),path:keyPath[0]},
-                //     ]
-                // }
-                // console.log(this.breadArr)
+                
+            },
+            watchScroll(){
+                if(this.$route.meta.title == '首页'){
+                    // if(window.scrollY >= 100){
+                    //     $('.top').css({'background':'#fff'});
+                    //     this.logoUrl = require('../../assets/images/index/logo2.png')
+                    //     $('.top .menu li').css({'color':'#353C45'});
+                    //     $('.el-menu-item.is-active').css({'color':'#0D70EE'})
+                    // }else{
+                        // this.logoUrl = require('../../assets/images/index/memu_logo2.png')
+                        $('.top').css({'background':'#fff'});
+                        $('.top .menu li').css({'color':'#353C45'});
+                        $('.el-menu-item.is-active').css({'color':'#0D70EE'})
+                    // }
+                }
             }
         },
         mounted(){
-            // console.log('jquery',$)
+            this.activeIndex = this.$route.path;
+            let that = this;
+            this.watchScroll();
             window.onscroll = function(e){
-                console.log(e,window.scrollY)
-                if(window.scrollY >= 1017){
-                    // alert('ljkl')
-                    $('.top').css({'background':'#2a2a2a'});
-                }else{
-                    $('.top').css({'background':'transparent'});
-                }
+                // console.log(e,window.scrollY)
+                that.watchScroll();
             }
         },
     }
@@ -98,13 +114,13 @@
             width: 100%;
             z-index: 100;
             top: 0;
+            box-shadow:0px 4px 10px 0px rgba(0,0,0,0.11);
         .top{
             display: flex;
             min-height: 40px;
             height: 70px;
             justify-content: space-between;
             padding: 0 .5rem;
-            // background:#1fbba6;
             width: 100%;
         }
         .logo{
@@ -116,23 +132,21 @@
             left: 4%;
             img{
                 width: 100%;
-                // padding-right: 10px;
                 float: left;
             };
-            span{
-                font-size: 0.15rem;
-                color: #fff;
-                font-weight: bold;
-                float: left;
-            }
+            
         }
         .menu{
             margin: 0 auto;
             li{
               @include  fontStyle;  
+              color: rgb(53, 60, 69);
               font-size:18px;
+              padding:0 25px!important;
             }
-            .el-menu--horizontal>.el-menu-item.is-active {
+            .el-menu--horizontal>.is-active {
+                color:#0D70EE!important;
+                background:transparent;
                 border-bottom: 5px solid rgba(13,112,238,1)!important;
                 border-radius: 3px!important;
             }
@@ -165,5 +179,8 @@
     .el-menu--horizontal>.el-menu-item{
         height: 70px!important;
         line-height: 70px!important;
+    }
+    .el-menu--horizontal .el-menu-item:not(.is-disabled):focus, .el-menu--horizontal .el-menu-item:not(.is-disabled):hover {
+        color: #303133!important;
     }
 </style>

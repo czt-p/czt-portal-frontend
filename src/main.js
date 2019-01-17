@@ -7,6 +7,22 @@ import './plugins/element.js'
 import 'normalize.css' // A modern alternative to CSS resets
 import './style/global.scss' // A modern alternative to CSS resets
 import 'font-awesome/css/font-awesome.css'
+import animate from 'animate.css'
+import util from './util/util'
+import  './style/quill.bubble.css'
+import  './style/quill.core.css'
+import  './style/quill.snow.css'
+
+Vue.directive('posInt', function(el){
+  var input = el;
+  input.onkeyup = function (e) {
+    if (e.target.value.length == 1) {
+      e.target.value = e.target.value.replace(/[^1-9]/g, '');
+    } else {
+      e.target.value = e.target.value.replace(/[^\d]/g, "");
+    }
+  };
+});
 
 Vue.config.productionTip = false
 

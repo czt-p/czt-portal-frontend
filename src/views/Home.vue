@@ -1,18 +1,49 @@
 <template>
   <div class="home">
-    <carousel></carousel>
+    <carousel :carouseData='carouseData1'>
+      <template>
+        <div slot='content1'>
+          <div class="words animated fadeInRightBig">
+            <p>CEZHITONG.com</p>
+            <p>高新技术企业测评</p>
+            <p><span style="font-size: 80px;">1/3</span><span>目前我们团队申请资助和节税已经累计突破亿元。其中，单个客户最高<br>申请资助额达1224万元，最高节税额达3000万左右，辅导的国家高新技<br>术企业过百家。您的利益，我们将竭尽全力维护</span></p>
+            <p>拥有核心知识产权的都可以申请测评</p>
+          </div>
+        </div>
+        <div slot='content2'>
+          <div class="words animated fadeInRightBig">
+            <p>CEZHITONG.com</p>
+            <p>高新技术企业全生命周期托管服务</p>
+            <p><span style="font-size: 80px;">1/3</span><span>目前我们团队申请资助和节税已经累计突破亿元。其中，单个客户最高<br>申请资助额达1224万元，最高节税额达3000万左右，辅导的国家高新技<br>术企业过百家。您的利益，我们将竭尽全力维护</span></p>
+            <p>拥有核心知识产权的都可以申请测评</p>
+          </div>
+        </div>
+      </template>
+    </carousel>
     <div class="tab">
-      <el-tabs v-model="activeName" @tab-click="handleClick">
-        <el-tab-pane label="用户管理" name="first">
-          <span slot="label">
-            <img v-if='activeName==="first"' src="../assets/images/index/svg/home_icon_gqpc_pre.svg" alt="" style="width: 37px;height: 34px;"> 
-            <img v-else src="../assets/images/index/svg/home_icon_gqpc_nor.svg" alt="" style="width: 37px;height: 34px;"> 
-              高企评测
-          </span>
-          <div class='contentArea'>
-            <div class="leftContent">
+      <!-- <el-tabs v-model="activeName" @tab-click="handleClick">
+        <el-tab-pane label="" name="first"> -->
+          <div class="paneH">
+            <a slot="label" href='#p1' :class="[activeName=='first'?'activeA':'']" @click='activeName="first"'>
+              <img v-if='activeName==="first"' src="../assets/images/index/svg/home_icon_gqpc_pre.svg" alt="" style="width: 37px;height: 34px;"> 
+              <img v-else src="../assets/images/index/svg/home_icon_gqpc_nor.svg" alt="" style="width: 37px;height: 34px;"> 
+                高企评测
+            </a>
+            <a slot="label" href='#p2' :class="[activeName=='second'?'activeA':'']" @click='activeName="second"'>
+              <img v-if='activeName==="second"' src="../assets/images/index/svg/home_icon_gqcbhs_pre.svg" alt="" style="width: 37px;height: 34px;"> 
+              <img v-else src="../assets/images/index/svg/home_icon_gqcchs_nor.svg" alt="" style="width: 37px;height: 34px;"> 
+                高企资助查询
+            </a>
+            <a slot="label" href='#p3' :class="[activeName=='third'?'activeA':'']" @click='activeName="third"'>
+              <img v-if='activeName==="third"' src="../assets/images/index/svg/home_icon_gqzzcx_pre.svg" alt="" style="width: 37px;height: 34px;"> 
+              <img v-else  src="../assets/images/index/svg/home_icon_gqzzcx_nor.svg" alt="" style="width: 37px;height: 34px;">
+                高企成本核算
+            </a>
+          </div>
+          
+          <div class='contentArea animated fadeInUpBig' id='p1'>
+            <div class="leftContent" >
               <img src="../assets/images/index/home_img_gqpc.png" alt="">
-              <el-button>点击进入</el-button>
             </div>
             <div class="rightContent">
               <h1>高企评测</h1>
@@ -22,65 +53,76 @@
               <p>3、配置稳定的技术团队</p>
               <p>4、开展持续的技术研发活动</p>
               <p>5、认定前一年自主知识产权的产品（服务）已实现销售</p>
+              <el-button style='bottom: 10%;' @click="goPage('/evaluating')" class='waveBtn1'>免费测一测</el-button>
             </div>
           </div>
-        </el-tab-pane>
-        <el-tab-pane label="配置管理" name="second">
-          <span slot="label">
-            <img v-if='activeName==="second"' src="../assets/images/index/svg/home_icon_gqcbhs_pre.svg" alt="" style="width: 37px;height: 34px;"> 
-            <img v-else src="../assets/images/index/svg/home_icon_gqcchs_nor.svg" alt="" style="width: 37px;height: 34px;"> 
-              高企资助查询
-          </span>
-          <div class='contentArea'>
+        <!-- </el-tab-pane> -->
+        <!-- <el-tab-pane label="" name="second"> -->
+          
+          <div class='contentArea animated fadeInUpBig' style='vertical-align:text-bottom;' id='p2'>
             <div class="rightContent" style="padding-left: 15%;box-sizing: border-box;">
               <h1 style="border-color:rgba(80,204,168,1);">高企资助查询</h1>
               <p>HIGH-TECH ENTERPRISE FUNDING FOR THE QUERY</p>
-              <p>1、企业所得税税率由25%降低至15%</p>
-              <p>2、地方政府财政补贴最高可达60-200万 </p>
-              <p>3、国家级荣誉提升企业品牌 </p>
-              <p>4、500万以上的银行信用贷款资质证明</p>
+              <p>企业所得税税率由25%降低至15%；地方政府财政补<br>贴最高可达60-200万；国家级荣誉；提升企业品牌；<br>500万以上的银行信用贷款资质证明。</p>
+              <el-button @click="goPage('/subsidize')" class='waveBtn2' style="box-shadow:0px 4px 20px 0px rgba(255,141,38,1);background:rgba(255,141,38,1);margin-left: -44%;bottom:5%;">资助快速查</el-button>
             </div>
             <div class="leftContent" style="text-align: left;">
               <img src="../assets/images/index/home_img_gqcx.png" alt="">
-              <el-button style="box-shadow:0px 4px 20px 0px rgba(80,204,168,1);background:rgba(80,204,168,1);margin-left: -36%;">点击进入</el-button>
             </div>
           </div>
-        </el-tab-pane>
-        <el-tab-pane label="角色管理" name="third">
-          <span slot="label">
-            <img v-if='activeName==="third"' src="../assets/images/index/svg/home_icon_gqzzcx_pre.svg" alt="" style="width: 37px;height: 34px;"> 
-            <img v-else  src="../assets/images/index/svg/home_icon_gqzzcx_nor.svg" alt="" style="width: 37px;height: 34px;">
-              高企成本核算
-          </span>
-          <div class='contentArea'>
-            <div class="leftContent">
+        <!-- </el-tab-pane>
+        <el-tab-pane label="" name="third"> -->
+          
+          <div class='contentArea animated fadeInUp' id='p3'>
+            <div class="leftContent animated fadeInUpBig">
               <img src="../assets/images/index/home_img_gqcbhs.png" alt="">
-              <el-button>点击进入</el-button>
             </div>
             <div class="rightContent">
               <h1>高企成本核算</h1>
               <p>HIGH-TECH ENTERPRISE COST ACCOUNTING</p>
-              <p>1、咨询费用5万起</p>
-              <p>2、专项审计报告费用 </p>
+              <p>1、咨询服务费</p>
+              <p>2、审计报告费用 </p>
               <p>3、知识产权费用</p>
-              <p>4、开展持续的技术研发活动</p>
               <p>4、其他</p>
+              <el-button class='waveBtn3' style='bottom: 10%;' @click="goPage('/costing')">高企成本免费估</el-button>
             </div>
           </div>
-        </el-tab-pane>
-      </el-tabs>
+        <!-- </el-tab-pane> -->
+      <!-- </el-tabs> -->
     </div>
     <div class="parenter">
       <div class="title">
         <i></i> <span>合作伙伴</span> <i></i>
       </div>
-      <div class="imgList" :style='{width:imgListWidth}'>
+      <carousel :carouseData='carouseData2'>
+        <template>
+            <div slot='content1'>
+              <div class="imgList" :style='{width:imgListWidth}'>
+                <ul>
+                  <li v-for="(item,index) in 10" :key='index' :style='{height:liHeight,width:liWidth}' class='partnerList'>
+                    <img :src="require(`../assets/images/index/parenter/home_logo${index+1}.png`)" alt="">
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div slot='content2'>
+              <div class="imgList" :style='{width:imgListWidth}'>
+                <ul>
+                  <li v-for="(item,index) in 10" :key='index' :style='{height:liHeight,width:liWidth}' class='partnerList'>
+                    <img :src="require(`../assets/images/index/parenter/home_logo${index+11}.png`)" alt="">
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </template>
+        </carousel>
+      <!-- <div class="imgList" :style='{width:imgListWidth}'>
         <ul>
           <li v-for="(item,index) in 16" :key='index' :style='{height:liHeight,width:liWidth}'>
             <img :src="require(`../assets/images/index/parenter/home_partner_logo${index}.png`)" alt="">
           </li>
         </ul>
-      </div>
+      </div> -->
     </div>
     <btArea></btArea>
   </div>
@@ -102,34 +144,154 @@ export default {
       activeName: 'first',
       liWidth:'',
       liHeight:'',
-      imgListWidth:''
+      imgListWidth:'',
+      tabHeadWidth:'',//tab栏标题宽度
+      tabHeadHeight:'',//tab栏标题高度,
+      carouseData1:{
+        imgList:[
+          {src: require('../assets/images/index/home_bg.png')},
+          {src: require('../assets/images/index/home_banner3.png')},
+        ],//头部轮播图
+        arrow:'always',
+        carouselHeight:'',
+      },
+      carouseData2:{
+        imgList:[
+          {},
+          {},
+        ],//头部轮播图
+        arrow:'always',
+        carouselHeight:'',
+      },
     };
   },
   methods: {
     handleClick(tab, event) {
       console.log(tab, event);
+    },
+    goPage(path){
+      this.$router.push({path});
     }
   },
   mounted(){
     let screenWidth = window.screen.width-0;
-    this.liWidth = (screenWidth*220/1440)+'px';
-    this.liHeight = (this.liWidth*140/220)+'px';
-    this.imgListWidth = (screenWidth*220/1440)*4+'px'
+    this.liWidth = (screenWidth*191/1440)+'px';
+    this.liHeight = (this.liWidth*140/191)+'px';
+    this.imgListWidth = (screenWidth*191/1440)*5+'px';
+    this.tabHeadWidth = screenWidth*387/1440+'px';
+    this.tabHeadHeight = screenWidth*387/1440*88/387+'px';
+    this.carouseData1.carouselHeight = (screenWidth*823/1440)+'px';
+    this.carouseData2.carouselHeight = (screenWidth*260/1440)+'px';
   }
 }
 </script>
 <style lang='scss'>
+// html,body{
+//   height:100%;
+//   overflow: auto;
+// }
+#app{
+  overflow: hidden;
+}
+.waveBtn1{ 
+  // -webkit-animation: twinkling 1s infinite ease-in-out 
+ -webkit-animation: twinkling1 linear 2s 1.5s infinite;
+  -moz-animation: twinkling1 linear 2s 1.5s infinite;
+  animation: twinkling1 linear 2s 1.5s infinite;
+} 
+.waveBtn2{ 
+  // -webkit-animation: twinkling 1s infinite ease-in-out 
+ -webkit-animation: twinkling1 linear 2s 1.5s infinite;
+  -moz-animation: twinkling1 linear 2s 1.5s infinite;
+  animation: twinkling1 linear 2s 1.5s infinite;
+} 
+.waveBtn3{ 
+  // -webkit-animation: twinkling 1s infinite ease-in-out 
+ -webkit-animation: twinkling1 linear 2s 1.5s infinite;
+  -moz-animation: twinkling1 linear 2s 1.5s infinite;
+  animation: twinkling1 linear 2s 1.5s infinite;
+} 
+@keyframes twinkling1{ 
+  0% {
+    // box-shadow: inset -1px 1px 3px 2px #444444, inset 1px -1px 3px 2px #222222, 0 0 0px 0 #b2ff1a;
+    box-shadow: inset -1px 1px 3px 2px #fff, inset 1px -1px 3px 2px #fff, 0 0 0px 0 #795548;
+  }
+
+  50% {
+        box-shadow: inset -1px 1px 3px 2px #f0612c, inset 1px -1px 3px 2px #f0612c, 0 0 20px 0 #795548;
+  }
+
+  100% {
+    box-shadow: inset -1px 1px 3px 2px #f0612c, inset 1px -1px 3px 2px #f0612c, 0 0 0px 0 #795548;
+  }
+}
+@keyframes twinkling2{ 
+  0% {
+    // box-shadow: inset -1px 1px 3px 2px #444444, inset 1px -1px 3px 2px #222222, 0 0 0px 0 #b2ff1a;
+    box-shadow: inset -1px 1px 3px 2px #fff, inset 1px -1px 3px 2px #fff, 0 0 0px 0 #795548;
+  }
+
+  50% {
+        box-shadow: inset -1px 1px 3px 2px #ff8d26, inset 1px -1px 3px 2px #ff8d26, 0 0 20px 0 #795548;
+  }
+
+  100% {
+    box-shadow: inset -1px 1px 3px 2px #ff8d26, inset 1px -1px 3px 2px #ff8d26, 0 0 0px 0 #795548;
+  }
+}
+@keyframes twinkling3{ 
+  0% {
+    // box-shadow: inset -1px 1px 3px 2px #444444, inset 1px -1px 3px 2px #222222, 0 0 0px 0 #b2ff1a;
+    box-shadow: inset -1px 1px 3px 2px #fff, inset 1px -1px 3px 2px #fff, 0 0 0px 0 #795548;
+  }
+
+  50% {
+        box-shadow: inset -1px 1px 3px 2px #f0612c, inset 1px -1px 3px 2px #f0612c, 0 0 20px 0 #795548;
+  }
+
+  100% {
+    box-shadow: inset -1px 1px 3px 2px #f0612c, inset 1px -1px 3px 2px #f0612c, 0 0 0px 0 #795548;
+  }
+}
+
+
+.ripple {
+    position: relative;
+    //隐藏溢出的径向渐变背景
+    overflow: hidden;
+}
   .tab{
-    margin-top: -87px;
+    margin-top: -88px;
     z-index: 2;
     // position: absolute;
     width: 100%;
+    background:#fff;
+    .paneH{
+      height: 88px;
+      z-index: 3;
+      position: relative;
+      width: 80.5%;
+      margin: 0 auto;
+      background: rgba(0,0,0,0.2);
+    }
+    a[slot='label']{
+      display: inline-block;
+      width:33.3%;
+      height:100%;
+      line-height: 100px;
+      color:#fff;
+      cursor:pointer;
+    }
+    .activeA{
+      background:rgba(255,255,255,0.3);
+    }
     .el-tabs__nav{
       float: none!important;
       .el-tabs__item {
         height: 88px!important;
         line-height: 88px!important;
-        width:387px;
+        // width:387px;
+        width:26.87%;
         font-size:24px;
         font-family:SourceHanSansCN-Medium;
         font-weight:500;
@@ -152,22 +314,7 @@ export default {
         img{
           width: 60%;
         }
-        button{
-          position: absolute;
-          bottom: -45px;
-          border:none!important;
-          width: 220px;
-          height: 56px;
-          background: rgba(74,144,226,1);
-          box-shadow:0px 4px 20px 0px rgba(74,144,226,1);
-          border-radius: 2px;
-          font-size: 22px;
-          font-family: SourceHanSansCN-Bold;
-          font-weight: bold;
-          color: rgba(255,255,255,1);
-          left: 50%;
-          margin-left: -110px;
-        }
+        
       }
       .rightContent{
         display: inline-block;
@@ -183,9 +330,10 @@ export default {
         }
         p{
           padding-left: 32px;
-          margin: 30px 0;
+          // margin: 30px 0;
           font-size:20px;
           font-family:SourceHanSansCN-Regular;
+          line-height: 50px;
           &:nth-child(2){
             font-size:20px;
             font-family:SourceHanSansCN-Regular;
@@ -194,6 +342,22 @@ export default {
             margin: 27px 0; 
           }
 
+        }
+        button{
+          position: absolute;
+          bottom: 172px;
+          border:none!important;
+          width: 220px;
+          height: 56px;
+          background: rgba(240,97,44,1);
+          box-shadow:0px 4px 20px 0px rgba(240,97,44,1);
+          border-radius: 2px;
+          font-size: 22px;
+          font-family: SourceHanSansCN-Bold;
+          font-weight: bold;
+          color: rgba(255,255,255,1);
+          left: 63%;
+          margin-left: -110px;
         }
       }
     }
@@ -204,7 +368,7 @@ export default {
     text-align: center;
     padding-bottom: 100px;
     .title{    
-      padding: 70px 0;
+      padding: 35px 0;
       span{
         display: inline-block;
         margin: 0 50px;
@@ -224,6 +388,10 @@ export default {
       display: inline-block;
       li{
         display: inline-block;
+      transition: transform .1s;
+        &:hover{
+          transform: scale(1.1);
+        }
       }
     } 
   }

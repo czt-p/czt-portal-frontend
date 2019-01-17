@@ -1,14 +1,10 @@
 <template>
   <div class='root'>
-    <el-carousel v-if='carouselHeight' :height="carouselHeight">
-        <el-carousel-item v-for="(item,index) in carousels" :key="index">
+    <el-carousel v-if='carouseData.imgList.length>0'  :height="carouseData.carouselHeight" :arrow='carouseData.arrow'>
+        <el-carousel-item v-for="(item,index) in carouseData.imgList" :key="index">
         <img :src="item.src" alt="">
-        <div class="words">
-          <p>CEZHITONG.com</p>
-          <p>高新技术企业测评</p>
-          <p><span style="font-size: 80px;">1/3</span><span>目前我们团队申请资助和节税已经累计突破亿元。其中，单个客户最高<br>申请资助额达1224万元，最高节税额达3000万左右，辅导的国家高新技<br>术企业过百家。您的利益，我们将竭尽全力维护</span></p>
-          <p>拥有核心知识产权的都可以申请测评</p>
-        </div>
+        <slot name='content1' v-if='index === 0'></slot>
+        <slot name='content2' v-if='index === 1'></slot>
         </el-carousel-item>
     </el-carousel>
   </div>
@@ -19,18 +15,16 @@ export default {
   name: '',
   data () {
     return {
-      carousels:[
-        {src: require('../../assets/images/index/home_bg.png')},
-      ],
       carouselHeight:''
     }
   },
+  props:['carouseData'],
   methods: {
 
   },
   mounted(){
-    let screenWidth = window.screen.width-0;
-    this.carouselHeight = (screenWidth*823/1440)+'px';
+    // let screenWidth = window.screen.width-0;
+    // this.carouselHeight = (screenWidth*823/1440)+'px';
   },
 }
 </script>
@@ -44,17 +38,19 @@ export default {
   }
 }
 .el-carousel__arrow--right {
-    right: 200px;
+    right: 10%;
+    margin-top: 1%;
 }
 .el-carousel__arrow--left {
-    left: 200px;
+    left: 10%;
+    margin-top: 1%;
 }
 .el-carousel__indicators{
   bottom:100px!important;
 }
 .words{
     position: absolute;
-    top: 38%;
+    top: 20%;
     left: 20%;
     text-align: left;
     p{

@@ -11,12 +11,88 @@ Vue.use(Router)
   routes: [
     {
       path: '/',
+      redirect: '/home',
+    },
+    {
+      path: '/home',
       name: 'home',
       meta: {
         title: "首页", //要现实的title
         show: true               //设置导航隐藏显示
       },
       component: () => import('./views/Home.vue')
+    },
+    {
+      path: '/evaluating',
+      name: 'evaluating',
+      meta: {
+        title: "高企评测", //要现实的title
+        show: true               //设置导航隐藏显示
+      },
+      component: () => import('./views/rate/evaluating.vue'),
+    },
+    {
+      path: '/newRate',
+      name: 'newRate',
+      meta: {
+        title: "高新评分", //要现实的title
+        show: true               //设置导航隐藏显示
+      },
+      component: () => import('./views/rate/newRate.vue'),
+    },
+    {
+      path: '/rateResult',
+      name: 'rateResult',
+      meta: {
+        title: "评估结果及建议", //要现实的title
+        show: true               //设置导航隐藏显示
+      },
+      component: () => import('./views/rate/rateResult.vue'),
+    },
+    {
+      path: '/subsidize',//高企资助查询
+      name: 'rateResult',
+      meta: {
+        title: "高企资助查询", //要现实的title
+        show: true               //设置导航隐藏显示
+      },
+      component: () => import('./views/subsidize/index.vue'),
+    },
+    {
+      path: '/subsidize/detail', //高企资助查询
+      name: 'subsidizeDetail',
+      meta: {
+        title: "高企资助查询详情", //要现实的title
+        show: true //设置导航隐藏显示
+      },
+      component: () => import('./views/subsidize/detail.vue'),
+    },
+    {
+      path: '/costing',//高企成本核算
+      name: 'costing',
+      meta: {
+        title: "高企成本核算", //要现实的title
+        show: true               //设置导航隐藏显示
+      },
+      component: () => import('./views/costing/index.vue'),
+    },
+    {
+      path: '/FAQs',//高企问答
+      name: 'FAQs',
+      meta: {
+        title: "高企问答", //要现实的title
+        show: true               //设置导航隐藏显示
+      },
+      component: () => import('./views/FAQs/index.vue'),
+    },
+    {
+      path: '/FAQs/detail', //高企资助查询
+      name: 'FAQsDetail',
+      meta: {
+        title: "高企问答查询详情", //要现实的title
+        show: true //设置导航隐藏显示
+      },
+      component: () => import('./views/FAQs/detail.vue'),
     },
     {
       path: '/about',
@@ -28,12 +104,13 @@ Vue.use(Router)
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      component: () => import(/* webpackChunkName: "about" */ './views/aboutUs/About.vue')
     }
   ]
 })
 router.beforeEach((to, from, next) => {
   NProgress.start();
+  window.scrollTo(0,0);
   if (to.meta.title) {
     document.title = to.meta.title
   }
