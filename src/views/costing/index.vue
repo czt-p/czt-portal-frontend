@@ -222,23 +222,23 @@ export default {
           applyYear: '',
           specialAuditList: [
             {
-              incoming: 0,
-              managerCost: 0,
-              rdCost: 0,
+              incoming: '',
+              managerCost: '',
+              rdCost: '',
               year: '',
               type:'0'
             },
             {
-              incoming: 0,
-              managerCost: 0,
-              rdCost: 0,
+              incoming: '',
+              managerCost: '',
+              rdCost: '',
               year: '',
               type:'0'
             },
             {
-              incoming: 0,
-              managerCost: 0,
-              rdCost: 0,
+              incoming: '',
+              managerCost: '',
+              rdCost: '',
               year: '',
               type:'0'
             }
@@ -247,15 +247,15 @@ export default {
         annualAuditCost: {//年度审计报告费用
           annualAuditList: [
             {
-              amount: 0,
+              amount: '',
               year: ''
             },
             {
-              amount: 0,
+              amount: '',
               year: ''
             },
             {
-              amount: 0,
+              amount: '',
               year: ''
             },
           ],
@@ -361,24 +361,24 @@ export default {
       this.$refs['form'].validate(valid=>{
         // console.log('valid',valid)
         if(valid){
-          let temp = this.form;
-          Object.keys(temp).map(x=>{
-            // console.log('x',x)
-            if(temp[x].isCheck == 0){
-              // console.log('item',x,temp[x])
-              Object.keys(temp[x]).map(item=>{
-                if(temp[x][item] instanceof Array){
-                  // console.log('xxxxx',item,temp[x][item])
-                  temp[x][item].map(o=>{
-                    // console.log('temp[x][item][o]',o,temp[x][item][o])
-                    Object.keys(o).map(y=>{
-                      o[y] = '';
-                    })
-                  })
-                }
-              })
-            }
-          })
+          // let temp = this.form;
+          // Object.keys(temp).map(x=>{
+          //   // console.log('x',x)
+          //   if(temp[x].isCheck == 0){
+          //     // console.log('item',x,temp[x])
+          //     Object.keys(temp[x]).map(item=>{
+          //       if(temp[x][item] instanceof Array){
+          //         // console.log('xxxxx',item,temp[x][item])
+          //         temp[x][item].map(o=>{
+          //           // console.log('temp[x][item][o]',o,temp[x][item][o])
+          //           Object.keys(o).map(y=>{
+          //             o[y] = '';
+          //           })
+          //         })
+          //       }
+          //     })
+          //   }
+          // })
           this.dialogConfig.centerDialogVisible = true;
         }
       })
@@ -386,7 +386,7 @@ export default {
     sendText(){
       this.$refs['form1'].validate(valid=>{
         if(valid){
-          console.log('this.form',this.form)
+          // console.log('this.form',this.form)
           costAccount({data:this.form}).then(res=>{
             // console.log('res',res)
             this.dialogConfig.centerDialogVisible = false;
@@ -448,7 +448,7 @@ export default {
     })
     let nowYear = new Date().getFullYear();
     // this.form.specialAuditCost.applyYear = nowYear;
-    console.log('nowYear',nowYear)
+    // console.log('nowYear',nowYear)
     for(let i = 0;i<30;i++){
       let str = nowYear++;
       this.nearYears.push({value:str,label:str})

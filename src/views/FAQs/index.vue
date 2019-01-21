@@ -19,77 +19,17 @@
                 <ul v-loading='loading'>
                     <li v-for='(x,index) in hightTechQList' :key='index'>
                         <div class="title">
-                            <span v-html='x.question'></span>
+                            <span class='ellipsis'>{{x.question.replace(reg,'')}}</span>
                             <span style="font-size:11px;font-family:SourceHanSansCN-Regular;font-weight:400;color:rgba(133,133,133,1);">{{new Date(x.updatedTime).Format('yyyy-MM-dd hh:mm:ss')}}</span>
                         </div>
                         <div class="content">
-                            <span>{{x.answer}}</span>
+                            <span class='ellipsis'>{{x.answer.replace(reg,'')}}</span>
                             <el-button type="text" @click='toDetail(x)'>查看详情 》</el-button>
                         </div>
                     </li>
-                    <!-- <li>
-                        <div class="title">
-                            <span>杭州市高新区知识产权资助政策</span>
-                            <span style="font-size:11px;font-family:SourceHanSansCN-Regular;font-weight:400;color:rgba(133,133,133,1);">时间：2018年05月24日</span>
-                        </div>
-                        <div class="content">
-                            <span>对在省科技厅云服务平台提交“国高企”认定申请，并通过专家评审（不含重新认定）的企业报…</span>
-                            <el-button type="text">查看详情 》</el-button>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="title">
-                            <span>杭州市高新区知识产权资助政策</span>
-                            <span style="font-size:11px;font-family:SourceHanSansCN-Regular;font-weight:400;color:rgba(133,133,133,1);">时间：2018年05月24日</span>
-                        </div>
-                        <div class="content">
-                            <span>对在省科技厅云服务平台提交“国高企”认定申请，并通过专家评审（不含重新认定）的企业报…</span>
-                            <el-button type="text">查看详情 》</el-button>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="title">
-                            <span>杭州市高新区知识产权资助政策</span>
-                            <span style="font-size:11px;font-family:SourceHanSansCN-Regular;font-weight:400;color:rgba(133,133,133,1);">时间：2018年05月24日</span>
-                        </div>
-                        <div class="content">
-                            <span>对在省科技厅云服务平台提交“国高企”认定申请，并通过专家评审（不含重新认定）的企业报…</span>
-                            <el-button type="text">查看详情 》</el-button>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="title">
-                            <span>杭州市高新区知识产权资助政策</span>
-                            <span style="font-size:11px;font-family:SourceHanSansCN-Regular;font-weight:400;color:rgba(133,133,133,1);">时间：2018年05月24日</span>
-                        </div>
-                        <div class="content">
-                            <span>对在省科技厅云服务平台提交“国高企”认定申请，并通过专家评审（不含重新认定）的企业报…</span>
-                            <el-button type="text">查看详情 》</el-button>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="title">
-                            <span>杭州市高新区知识产权资助政策</span>
-                            <span style="font-size:11px;font-family:SourceHanSansCN-Regular;font-weight:400;color:rgba(133,133,133,1);">时间：2018年05月24日</span>
-                        </div>
-                        <div class="content">
-                            <span>对在省科技厅云服务平台提交“国高企”认定申请，并通过专家评审（不含重新认定）的企业报…</span>
-                            <el-button type="text">查看详情 》</el-button>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="title">
-                            <span>杭州市高新区知识产权资助政策</span>
-                            <span style="font-size:11px;font-family:SourceHanSansCN-Regular;font-weight:400;color:rgba(133,133,133,1);">时间：2018年05月24日</span>
-                        </div>
-                        <div class="content">
-                            <span>对在省科技厅云服务平台提交“国高企”认定申请，并通过专家评审（不含重新认定）的企业报…</span>
-                            <el-button type="text">查看详情 》</el-button>
-                        </div>
-                    </li> -->
-                    <div class="noneList" style='text-align:center;color:#9e9e9e;font-size: 12px;' v-if='hightTechQList.length == totalNum'>---没有更多了---</div>
+                    <div class="noneList" style='text-align:center;color:#9e9e9e;font-size: 12px;' v-if='hightTechQList.length == totalNum && hightTechQList.length!=0'>---没有更多了---</div>
                 </ul>
-                <el-button class='toTop' circle type="primary" icon='el-icon-arrow-up' @click='smoothscroll'></el-button>
+                <el-button class='toTop' circle type="primary" icon='el-icon-arrow-up' v-if='hightTechQList.length>6' @click='smoothscroll'></el-button>
                 <div class="loadMore" v-loading='loadMore'></div>
             </div>
             <div class="rightArea">
@@ -147,6 +87,7 @@ export default {
         noQue:false,
         loadMore:false,
         totalNum: 0,
+        reg:/<\/?.+?\/?>/g,
     }
   },
   computed: {
@@ -183,14 +124,18 @@ export default {
       },
       searchQue(){
         this.loading = true;
+        this.param.pageIndex = 1;
         getHighTechQ({param:this.param}).then(res=>{
             if(res.data.content.length>0){
                 this.loading = false;
                 this.noQue = false;
                 this.hightTechQList = res.data.content;
+                this.totalNum = res.data.total;
+                // window.sessionStorage.setItem('primaryKey',this.param.primaryKey);
             }else{
                 this.loading = false;
                 this.hightTechQList = [];
+                this.totalNum = 0;
                 this.noQue = true;
             }
         }).catch(err=>{
@@ -216,6 +161,7 @@ export default {
       }
   },
   mounted(){
+    // this.param.primaryKey = window.sessionStorage.getItem('primaryKey');
       // 添加滚动事件，检测滚动到页面底部
     $('.leftArea')[0].addEventListener('scroll', this.scrollBottom);
     this.initLeftContent(this.param);
@@ -306,6 +252,10 @@ export default {
                         font-family:SourceHanSansCN-Regular;
                         font-weight:400;
                         color:rgba(53,60,69,1);
+                        height: 40px;
+                        overflow: hidden;
+                        color: #353c45;
+                        margin-top: 20px;
                     }
                 }
                 

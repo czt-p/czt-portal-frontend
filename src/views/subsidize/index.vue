@@ -5,7 +5,7 @@
             <el-tabs type="card">
                 <el-tab-pane label="按公司全称查询" class='company clearfix'>
                     <el-input
-                        placeholder="请输入公司全称；如：杭州快知科技有限公司"
+                        placeholder="请输入公司全称，查询当地高企资助政策；如：杭州快知科技有限公司"
                         v-model="companyName"
                         @keyup.enter.native='clickSearchCompany'
                         clearable>  
@@ -42,13 +42,13 @@
                             <span style="font-size:11px;font-family:SourceHanSansCN-Regular;font-weight:400;color:rgba(133,133,133,1);">时间：{{new Date(item.modifyTime).Format('yyyy-MM-dd hh:mm:ss')}}</span>
                         </div>
                         <div class="content">
-                            <span class='ellipsis' v-html='item.content' style='width:83%;'></span>
+                            <span class='ellipsis' style='width:83%;'>{{item.content.replace(reg,'')}}</span>
                             <el-button type="text" @click='toDetail(item)'>查看详情 》</el-button>
                         </div>
                     </li>
-                    <div class="noneList" style='text-align:center;color:#9e9e9e;font-size: 12px;' v-if='subscribeList.length == totalNum'>---没有更多了---</div>
+                    <div class="noneList" style='text-align:center;color:#9e9e9e;font-size: 12px;' v-if='subscribeList.length == totalNum && subscribeList.length!=0'>---没有更多了---</div>
                 </ul>
-                <el-button class='toTop' v-if='subscribeList.length>6' circle type="primary" icon='el-icon-arrow-up' @click='smoothscroll'></el-button>
+                <el-button class='toTop' v-if='subscribeList.length>6'  circle type="primary" icon='el-icon-arrow-up' @click='smoothscroll'></el-button>
                 <div class="loadMore" v-loading='loadMore'></div>
             </div>
             
@@ -63,9 +63,9 @@
                     </li>
                 </ul>
             </div>
-            <svg class="loader-circular" viewBox="25 25 50 50">
+            <!-- <svg class="loader-circular" viewBox="25 25 50 50">
                 <circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="rgb(53, 157, 218)" stroke-width="5"></circle>
-            </svg>
+            </svg> -->
         </div>
       </div>
       <btArea></btArea>
@@ -99,6 +99,7 @@ export default {
         loadMore:false,
         totalNum: 0,
         loading:true,
+        reg:/<\/?.+?\/?>/g,
     }
   },
   computed: {

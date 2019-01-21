@@ -53,7 +53,7 @@
               <p>3、配置稳定的技术团队</p>
               <p>4、开展持续的技术研发活动</p>
               <p>5、认定前一年自主知识产权的产品（服务）已实现销售</p>
-              <el-button style='bottom: 10%;' @click="goPage('/evaluating')" class='waveBtn1'>免费测一测</el-button>
+              <el-button style='bottom: -19%;left:16%;' @click="goPage('/evaluating')" class='waveBtn1'>免费测一测</el-button>
             </div>
           </div>
         <!-- </el-tab-pane> -->
@@ -64,7 +64,7 @@
               <h1 style="border-color:rgba(80,204,168,1);">高企资助查询</h1>
               <p>HIGH-TECH ENTERPRISE FUNDING FOR THE QUERY</p>
               <p>企业所得税税率由25%降低至15%；地方政府财政补<br>贴最高可达60-200万；国家级荣誉；提升企业品牌；<br>500万以上的银行信用贷款资质证明。</p>
-              <el-button @click="goPage('/subsidize')" class='waveBtn2' style="box-shadow:0px 4px 20px 0px rgba(255,141,38,1);background:rgba(255,141,38,1);margin-left: -44%;bottom:5%;">资助快速查</el-button>
+              <el-button @click="goPage('/subsidize')" class='waveBtn2' style="box-shadow:0px 4px 20px 0px rgba(255,141,38,1);background:rgba(255,141,38,1);margin-left: 18%;bottom:-30%;">资助快速查</el-button>
             </div>
             <div class="leftContent" style="text-align: left;">
               <img src="../assets/images/index/home_img_gqcx.png" alt="">
@@ -84,7 +84,7 @@
               <p>2、审计报告费用 </p>
               <p>3、知识产权费用</p>
               <p>4、其他</p>
-              <el-button class='waveBtn3' style='bottom: 10%;' @click="goPage('/costing')">高企成本免费估</el-button>
+              <el-button class='waveBtn3' style='bottom: -27%;left:16%;' @click="goPage('/costing')">高企成本免费估</el-button>
             </div>
           </div>
         <!-- </el-tab-pane> -->
@@ -307,6 +307,7 @@ export default {
     .contentArea{
       box-sizing: border-box;
       padding: 100px 30px;
+
       .leftContent{
         display: inline-block;
         width:50%;
@@ -321,6 +322,7 @@ export default {
         width:50%;
         text-align: left;
         vertical-align: middle;
+        position: relative;
         h1{
           font-size:50px;
           font-weight:bold;

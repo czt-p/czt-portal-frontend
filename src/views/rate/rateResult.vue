@@ -11,7 +11,7 @@
       </div> -->
       <div class="reRate">
         <div class='topTitle'>初步评估分值:</div>
-        <div class="rates">{{`${$route.query.score}`}}分</div>
+        <div class="rates">{{`${$route.query.score}` || ''}}分</div>
       </div>
       <el-button @click="openDialog">点击获取详细分析报告</el-button>
     </div>
@@ -44,11 +44,20 @@
 <script>
 import {mapState, mapActions} from 'vuex';
 import btArea from '@/components/bottom/index.vue';
-c
+import yyDialog from '@/components/dialog/dialog.vue';
 import {getResult} from '@/api/index';
 export default {
   name: '',
   data () {
+    var validPhone=(rule, value,callback)=>{
+        if (!value){
+            callback(new Error('请输入电话号码'))
+        }else  if (!(/^1[3|4|5|7|8][0-9]\d{8}$/).test(value.trim())){
+          callback(new Error('请输入正确的11位手机号码'))
+        }else {
+            callback()
+        }
+    }
     return {
       dialogConfig:{
         centerDialogVisible:false
@@ -62,14 +71,16 @@ export default {
           { required: true, message: '请输入公司名称', trigger: 'blur' },
         ],
         telephone: [
-          { required: true, message: '请输入联系电话', trigger: 'blur' },
-            { pattern: /^1[34578]\d{9}$/, message: '请输入正确的手机号码' }
+          { required: true, validator: validPhone, trigger: 'blur' },
+          // { pattern: /^1[34578]\d{9}$/, message: '请输入正确的手机号码' }
         ],
       },
       // formEl:'',//form的实例组件
       transData:{
         formEl:''
-      }
+      },
+      img1:require('../../assets/images/index/gxpc_img1.png'),
+      img2:require('../../assets/images/index/gxpc_img2.png'),
     }
   },
   components:{
@@ -117,7 +128,7 @@ export default {
             })
             
           } else {
-            console.log('error submit!!');
+            // console.log('error submit!!');
             return false;
           }
         });
@@ -135,6 +146,12 @@ export default {
     this.$nextTick(()=>{
       this.transData.formEl = this.$refs['form1']
     })
+    if(this.$route.query.score>71){
+      alert('111111')
+      $('.resultArea').css({background:'url('+this.img1+')'})
+    }else{alert('2222')
+      $('.resultArea').css({background:'url('+this.img2+')'})
+    }
   },
 }
 </script>
@@ -148,7 +165,7 @@ export default {
   .resultArea{
       width:41.5%;
       max-height: 439px;
-      background: url(../../assets/images/index/gxpc_img1.png);
+      // background: url(../../assets/images/index/gxpc_img1.png);
       margin: 0 auto;
       margin-bottom: 10%;
       position:relative;     
