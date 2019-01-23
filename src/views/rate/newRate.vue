@@ -209,7 +209,7 @@ export default {
       .el-radio-group{
         padding-left:23px;
         .el-radio{
-            padding-right:80px!important;
+            padding-right:70px!important;
         }
         .moreOptions{
             display: block;

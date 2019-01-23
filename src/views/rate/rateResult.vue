@@ -52,7 +52,7 @@ export default {
     var validPhone=(rule, value,callback)=>{
         if (!value){
             callback(new Error('请输入电话号码'))
-        }else  if (!(/^1[3|4|5|7|8][0-9]\d{8}$/).test(value.trim())){
+        }else  if (!(/^1[3|4|5|6|7|8][0-9]\d{8}$/).test(value.trim())){
           callback(new Error('请输入正确的11位手机号码'))
         }else {
             callback()
@@ -147,9 +147,8 @@ export default {
       this.transData.formEl = this.$refs['form1']
     })
     if(this.$route.query.score>71){
-      alert('111111')
       $('.resultArea').css({background:'url('+this.img1+')'})
-    }else{alert('2222')
+    }else{
       $('.resultArea').css({background:'url('+this.img2+')'})
     }
   },

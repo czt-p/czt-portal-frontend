@@ -263,7 +263,7 @@ export default {
             .rightArea{
                 min-width: 315px;
                 width: 23%;
-                height: 350px;
+                height: 520px;
                 background: #fff;
                 box-shadow:0px 4px 10px 0px rgba(0,0,0,0.2);
                 .topTitle{

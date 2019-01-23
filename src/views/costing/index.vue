@@ -85,7 +85,7 @@
               :rules="form.ipCost.isCheck==1?[
                 { required: true, message: '请输入知识产权数量'}, 
               ]:[]">
-              <el-input class='rightOne posInt' v-model.number="x.quantity"  type='number' :disabled="form.ipCost.isCheck==0" v-posInt></el-input>个
+              <el-input class='rightOne posInt' v-model.number="x.quantity" min='0'  type='number' :disabled="form.ipCost.isCheck==0" v-posInt></el-input>个
             </el-form-item>
             <el-button type="primary" v-if='i == 0' :disabled="form.ipCost.isCheck==0"  icon='el-icon-plus' class='addIP' @click="addIpList">新增</el-button>
             <el-button type="primary" style='background:#f44336;' v-else :disabled="form.ipCost.isCheck==0"  icon='el-icon-delete' class='addIP' @click="removeIPList(i)">删除</el-button>
@@ -212,10 +212,10 @@ export default {
               quantity:'',//所需数量
               type:'',//其他费用类型
             },
-            {
-              quantity:'',//所需数量
-              type:'',//其他费用类型
-            }
+            // {
+            //   quantity:'',//所需数量
+            //   type:'',//其他费用类型
+            // }
           ]
         },
         specialAuditCost: {//专项审核报告
@@ -323,7 +323,10 @@ export default {
       })
     },
     addAnnualAuditList(){//新增年度审计报告费用
-      this.form.annualAuditCost.annualAuditList.length==2?this.form.annualAuditCost.annualAuditList.push({amount:'',year:''}):'';
+      if(this.form.annualAuditCost.annualAuditList.length==2){
+        let year = this.form.annualAuditCost.annualAuditList[1].year-1;
+        this.form.annualAuditCost.annualAuditList.push({amount:'',year});
+      }
     },
     addOtherCost(){
       this.form.otherCost.otherList.length<this.otherCostType.length?this.form.otherCost.otherList.push({type:'',quantity:''}):'';

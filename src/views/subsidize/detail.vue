@@ -2,7 +2,7 @@
   <div class='subsidizeDetail'>
       <div class="wrap">
         <el-button type="primary" circle icon='el-icon-arrow-left' @click='$router.go(-1)'></el-button>
-        <div class='title'>{{name}}</div>
+        <div class='title' style='width: 80%;margin: 0 auto;'>{{name}}</div>
         <div class='content ql-editor' v-html='detail'>
         </div>
       </div>
