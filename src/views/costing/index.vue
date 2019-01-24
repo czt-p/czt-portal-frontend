@@ -62,7 +62,7 @@
               <el-input class='rightOne' min='0' type='number' v-model.number="x.managerCost"></el-input>万元
             </el-form-item>
           </div>
-          <div class="tips">根据高架高新技术企业申请规定，需要至少申报申请年度最近3年的营业收入及研发费用（管理费用）投入情况</div>
+          <div class="tips">根据高新技术企业申请规定，需要至少申报申请年度最近3年的营业收入及研发费用（管理费用）投入情况</div>
         </div>
         <div class="consulting">
           <div class="title">知识产权费用</div>
