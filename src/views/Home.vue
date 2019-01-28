@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <carousel :carouseData='carouseData1'>
-      <template>
+    <carousel :carouseData='carouseData1' class='firstP'>
+      <!-- <template>
         <div slot='content1'>
           <div class="words animated fadeInRightBig">
             <p>CEZHITONG.com</p>
@@ -18,27 +18,27 @@
             <p>拥有核心知识产权的都可以申请测评</p>
           </div>
         </div>
-      </template>
+      </template> -->
     </carousel>
     <div class="tab">
       <!-- <el-tabs v-model="activeName" @tab-click="handleClick">
         <el-tab-pane label="" name="first"> -->
           <div class="paneH">
-            <a slot="label" href='#p1' :class="[activeName=='first'?'activeA':'']" @click='activeName="first"'>
+            <div slot="label" @click='scrollToP(1)' :class="[activeName=='first'?'activeA':'']" >
               <img v-if='activeName==="first"' src="../assets/images/index/svg/home_icon_gqpc_pre.svg" alt="" style="width: 37px;height: 34px;"> 
               <img v-else src="../assets/images/index/svg/home_icon_gqpc_nor.svg" alt="" style="width: 37px;height: 34px;"> 
                 高企评测
-            </a>
-            <a slot="label" href='#p2' :class="[activeName=='second'?'activeA':'']" @click='activeName="second"'>
+            </div>
+            <div slot="label" @click='scrollToP(2)' :class="[activeName=='second'?'activeA':'']" >
               <img v-if='activeName==="second"' src="../assets/images/index/svg/home_icon_gqcbhs_pre.svg" alt="" style="width: 37px;height: 34px;"> 
               <img v-else src="../assets/images/index/svg/home_icon_gqcchs_nor.svg" alt="" style="width: 37px;height: 34px;"> 
                 高企资助查询
-            </a>
-            <a slot="label" href='#p3' :class="[activeName=='third'?'activeA':'']" @click='activeName="third"'>
+            </div>
+            <div slot="label" @click='scrollToP(3)' :class="[activeName=='third'?'activeA':'']">
               <img v-if='activeName==="third"' src="../assets/images/index/svg/home_icon_gqzzcx_pre.svg" alt="" style="width: 37px;height: 34px;"> 
               <img v-else  src="../assets/images/index/svg/home_icon_gqzzcx_nor.svg" alt="" style="width: 37px;height: 34px;">
                 高企成本核算
-            </a>
+            </div>
           </div>
           
           <div class='contentArea animated fadeInUpBig' id='p1'>
@@ -153,8 +153,9 @@ export default {
       tabHeadHeight:'',//tab栏标题高度,
       carouseData1:{
         imgList:[
-          {src: require('../assets/images/index/home_bg.png')},
-          {src: require('../assets/images/index/home_banner3.png')},
+          {src: require('../assets/images/index/home_bg1.jpg')},
+          {src: require('../assets/images/index/home_bg2.jpg')},
+          {src: require('../assets/images/index/home_bg3.jpg')},
         ],//头部轮播图
         arrow:'always',
         carouselHeight:'',
@@ -171,10 +172,35 @@ export default {
   },
   methods: {
     handleClick(tab, event) {
-      console.log(tab, event);
+      // console.log(tab, event);
     },
     goPage(path){
       this.$router.push({path});
+    },
+    scrollToP(num){
+      // console.log("$('.root').height()",$('.root').height(),num)
+      var top1 = $('.root').height();
+      var top2 = $('.root').height()+$('#p1').height()+150;
+      var top3 = top2+$('#p2').height()+150;
+      switch (num){
+        case 1:
+        // console.log('top1',num,top1)
+        this.activeName = 'first';
+        $("html,body").finish().animate({"scrollTop":top1},400);
+        break;
+        case 2:
+        // console.log('top2',num,top2)
+        this.activeName = 'second';
+        $("html,body").finish().animate({"scrollTop":top2},400);
+        break;
+        case 3:
+        // console.log('top3',num,top3)
+        this.activeName = 'third';
+        $("html,body").finish().animate({"scrollTop":top3},400);
+        break;
+        default:
+      }
+      
     }
   },
   mounted(){
@@ -184,7 +210,7 @@ export default {
     this.imgListWidth = (screenWidth*191/1440)*5+'px';
     this.tabHeadWidth = screenWidth*387/1440+'px';
     this.tabHeadHeight = screenWidth*387/1440*88/387+'px';
-    this.carouseData1.carouselHeight = (screenWidth*823/1440)+'px';
+    this.carouseData1.carouselHeight = (screenWidth*810/1440)+'px';
     this.carouseData2.carouselHeight = (screenWidth*260/1440)+'px';
   }
 }
@@ -278,7 +304,7 @@ export default {
       margin: 0 auto;
       background: rgba(0,0,0,0.2);
     }
-    a[slot='label']{
+    div[slot='label']{
       display: inline-block;
       width:33.3%;
       height:100%;
@@ -286,7 +312,7 @@ export default {
       color:#fff;
       cursor:pointer;
     }
-    a:hover{
+    div[slot='label']:hover{
       background: rgba(255, 255, 255, 0.3);
       text-decoration: none;
     }

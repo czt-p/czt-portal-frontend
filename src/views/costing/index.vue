@@ -189,6 +189,15 @@ import {financialGrowth,highField,ipType,otherCostType,recentYearIncoming,costAc
 export default {
   name: '',
   data () {
+    var validPhone=(rule, value,callback)=>{
+        if (!value){
+            callback(new Error('请输入电话号码'))
+        }else  if (!(/^1[3|4|5|6|7|8][0-9]\d{8}$/).test(value.trim())){
+          callback(new Error('请输入正确的11位手机号码'))
+        }else {
+            callback()
+        }
+    }
     return {
       form:{
         consultCost:{
@@ -279,8 +288,7 @@ export default {
           { required: true, message: '请输入公司名称', trigger: 'blur' },
         ],
         telephone: [
-          { required: true, message: '请输入联系电话', trigger: 'blur' },
-            { pattern: /^1[34578]\d{9}$/, message: '请输入正确的手机号码' }
+          { required: true, validator: validPhone, trigger: 'blur' },
         ],
       },
     }
