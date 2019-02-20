@@ -153,9 +153,9 @@ export default {
       tabHeadHeight:'',//tab栏标题高度,
       carouseData1:{
         imgList:[
-          {src: require('../assets/images/index/home_bg1.jpg')},
-          {src: require('../assets/images/index/home_bg2.jpg')},
           {src: require('../assets/images/index/home_bg3.jpg')},
+          {src: require('../assets/images/index/home_bg2.jpg')},
+          {src: require('../assets/images/index/home_bg1.jpg')},
         ],//头部轮播图
         arrow:'always',
         carouselHeight:'',
@@ -210,7 +210,7 @@ export default {
     this.imgListWidth = (screenWidth*191/1440)*5+'px';
     this.tabHeadWidth = screenWidth*387/1440+'px';
     this.tabHeadHeight = screenWidth*387/1440*88/387+'px';
-    this.carouseData1.carouselHeight = (screenWidth*810/1440)+'px';
+    this.carouseData1.carouselHeight = (screenWidth*810/1440)-90+'px';
     this.carouseData2.carouselHeight = (screenWidth*260/1440)+'px';
   }
 }
@@ -311,6 +311,7 @@ export default {
       line-height: 100px;
       color:#fff;
       cursor:pointer;
+      font-size: 25px;
     }
     div[slot='label']:hover{
       background: rgba(255, 255, 255, 0.3);

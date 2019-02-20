@@ -42,4 +42,23 @@ input[type="text"],input[type="button"],input[type="submit"],input[type="reset"]
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+#pp-launcher-container,
+#pp-launcher-button-container,
+#pp-launcher-button-close {
+    height:100px;
+    width:100px;
+}
+#pp-launcher-button {
+    background-size: 40px;
+    background-position: center 20px;
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+    line-height: 150px;
+    width:100px;
+    height:100px;
 
+}
+#pp-conversation{
+    bottom:125px;
+}

@@ -9,7 +9,7 @@
                 <p>联系我们：400-878-0703 </p>
                 <p>服务时间：周一至周五9:00-18:00 </p>
                 <p>邮箱：server@cezhitong.com</p>
-                <p>地址：浙江省杭州市江干区红普路759号汇合禧福汇电商创业大厦4-312室</p>
+                <p>地址：浙江省杭州市江干区红普路759号汇禾禧福汇电商创业大厦4-312室</p>
             </div>
         </div>
         <div class="links">
@@ -17,7 +17,7 @@
             <a href='http://www.innocom.gov.cn/' target='_blank'>国家高新技术企业认定管理工作网</a>
             <a href='http://www.most.gov.cn/' target='_blank'>科部网</a>
             <a href='http://www.zjkjt.gov.cn/' target='_blank'>浙江省科技厅</a>
-            <a href='http://www.innocom.gov.cn/' target='_blank'>浙江省高新技术企业认定管理工作网</a>
+            <a href='http://202.107.205.11:8612/' target='_blank'>浙江省高新技术企业认定管理工作网</a>
         </div>
         <div class="copyRight">
             <div>©2018-2019 策知通科技公司版权所有 浙ICP备14014304-1号</div>

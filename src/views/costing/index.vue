@@ -471,10 +471,10 @@ export default {
 <style lang='scss' >
 .costing{
   .wrap{
-    width:80.5%;
+    width:86%;
     margin: 60px auto;
     background:#fff;
-    padding: 30px 50px;
+    padding: 30px;
     text-align: left;
     font-family:SourceHanSansCN-Medium;
     input{
@@ -528,6 +528,9 @@ export default {
     }
     .consulting{
       margin: 60px 0px;
+    }
+    .consulting:nth-child(1){
+      margin-top: 30px;
     }
     
     .btnWrap{

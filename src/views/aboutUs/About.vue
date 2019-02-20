@@ -18,7 +18,7 @@
               <p>公司：杭州策知通科技网络有限公司</p>
               <!-- <p>邮箱：fangqiangjian@cezhitong.com</p> -->
               <p>邮箱：server@cezhitong.com</p>
-              <p>地址：浙江省杭州市江干区红普路759号汇合禧福汇电商创业大厦4-312室</p>
+              <p>地址：浙江省杭州市江干区红普路759号汇禾禧福汇电商创业大厦4-312室</p>
             </div>
             <div class="rightp fl">
               <aMap :style='mapStyle'></aMap>
