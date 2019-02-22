@@ -146,6 +146,7 @@ export default {
                         this.companyNone = false;
                         this.regionNone = false;
                         this.subscribeList = res.data;
+                        this.toDetail(this.subscribeList[0]);
                     }else{
                         this.subscribeList = [];
                         this.regionNone = false;
@@ -182,6 +183,7 @@ export default {
                         this.regionNone = false;
                         this.companyNone = false;
                         this.subscribeList = res.data;
+                        this.toDetail(this.subscribeList[0]);
                     }else{
                         this.subscribeList = [];
                         this.companyNone = false;
@@ -213,6 +215,7 @@ export default {
         })
       },
       toDetail(content){
+          console.log('content',content)
           this.$router.push({name:'subsidizeDetail',params:{content}});
       },
       smoothscroll(){

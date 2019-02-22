@@ -14,7 +14,7 @@
       </li>
     </ul>
     <div class="btnArea">
-      <el-button @click='submitStep1'>查看基础评估结果</el-button>
+      <el-button @click='submitStep1'>点击进入下一步高企评测</el-button>
     </div>
     <!-- <el-button type="text" @click="dialogConfig.centerDialogVisible = true">点击打开 Dialog</el-button> -->
     <yyDialog :dialogConfig='dialogConfig'>

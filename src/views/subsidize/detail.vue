@@ -78,4 +78,8 @@ export default {
 strong{
     font-weight: bold;
 }
+.ql-editor{
+  box-sizing: border-box;
+  overflow: hidden;
+}
 </style>
