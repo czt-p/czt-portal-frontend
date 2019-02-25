@@ -47,7 +47,7 @@
             </div>
             <div class="rightContent">
               <h1>高企评测</h1>
-              <p>HIGH-TECH ENTERPRISE EVALUATION</p>
+              <!-- <p>HIGH-TECH ENTERPRISE EVALUATION</p> -->
               <p>1、企业须注册成立一年以上</p>
               <p>2、拥有核心自主知识产权</p>
               <p>3、配置稳定的技术团队</p>
@@ -62,7 +62,7 @@
           <div class='contentArea animated fadeInUpBig' style='vertical-align:text-bottom;' id='p2'>
             <div class="rightContent extend_rightContent">
               <h1 style="border-color:#FF8D26;">高企资助查询</h1>
-              <p>HIGH-TECH ENTERPRISE FUNDING FOR THE QUERY</p>
+              <!-- <p>HIGH-TECH ENTERPRISE FUNDING FOR THE QUERY</p> -->
               <p>1、企业所得税税率由25%降低至15%</p>
               <p>2、地方政府财政补贴最高可达60-200万</p>
               <p>3、国家级荣誉</p>
@@ -83,7 +83,7 @@
             </div>
             <div class="rightContent">
               <h1>高企成本核算</h1>
-              <p>HIGH-TECH ENTERPRISE COST ACCOUNTING</p>
+              <!-- <p>HIGH-TECH ENTERPRISE COST ACCOUNTING</p> -->
               <p>1、咨询服务费</p>
               <p>2、审计报告费用 </p>
               <p>3、知识产权费用</p>
@@ -376,13 +376,13 @@ export default {
           font-size:20px;
           font-family:SourceHanSansCN-Regular;
           line-height: 50px;
-          &:nth-child(2){
-            font-size:20px;
-            font-family:SourceHanSansCN-Regular;
-            font-weight:400;
-            color:rgba(116,120,125,1);
-            margin: 27px 0; 
-          }
+          // &:nth-child(2){
+          //   font-size:20px;
+          //   font-family:SourceHanSansCN-Regular;
+          //   font-weight:400;
+          //   color:rgba(116,120,125,1);
+          //   margin: 27px 0; 
+          // }
 
         }
         button{

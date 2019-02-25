@@ -82,6 +82,7 @@
             :rules="form.specialAuditCost.isCheck==1?[{ required: true, message: '请选择预计申请年度', trigger: 'change' },]:[]"
           >
             <el-select
+              style='margin-right: 100px;'
               v-model="form.specialAuditCost.applyYear"
               @change="setThreeYears"
               clearable
@@ -90,6 +91,13 @@
             >
               <el-option :label="x.label" :value="x.value" v-for="(x,i) in nearYears" :key="i"></el-option>
             </el-select>
+             <el-button
+              type="primary"
+              :disabled="form.specialAuditCost.isCheck==0"
+              icon="el-icon-plus"
+              class="addIP"
+              @click="addSpecialAuditList"
+            >新增</el-button>
           </el-form-item>
           <div
             class="inline inlineInput moreInput"
@@ -172,18 +180,10 @@
                 :disabled="form.specialAuditCost.isCheck==0"
               ></el-input>万元
             </el-form-item>
-            <el-button
-              type="primary"
-              v-if="i == 0"
-              :disabled="form.specialAuditCost.isCheck==0"
-              icon="el-icon-plus"
-              class="addIP"
-              @click="addSpecialAuditList"
-            >新增</el-button>
+           
             <el-button
               type="primary"
               style="background:#f44336;"
-              v-if="i!=0"
               :disabled="form.specialAuditCost.isCheck==0"
               icon="el-icon-delete"
               class="addIP"
@@ -578,9 +578,37 @@ export default {
   },
   methods: {
     addSpecialAuditList() {
-      this.form.specialAuditCost.specialAuditList.length < 3
-        ? this.form.specialAuditCost.specialAuditList.push({ incoming: "", managerCost: "", rdCost: "", year: "", type: "" })
-        : "";
+      let year = this.form.specialAuditCost.applyYear;
+      if(this.form.specialAuditCost.specialAuditList.length <3){
+        if(!year){
+          this.form.specialAuditCost.specialAuditList.push({ incoming: "", managerCost: "", rdCost: "", year: '', type: "" })
+        }else{
+          let temp = [year-1,year-2,year-3];
+          switch(this.form.specialAuditCost.specialAuditList.length ){
+            case 0:
+            this.form.specialAuditCost.specialAuditList.push({ incoming: "", managerCost: "", rdCost: "", year: year-1, type: "" })
+            break;
+            case 1:
+            let fYear1 = this.form.specialAuditCost.specialAuditList[0].year;
+            temp.map((x,i)=>{
+              if(x == fYear1)temp.splice(i,1);
+            })
+            this.form.specialAuditCost.specialAuditList.push({ incoming: "", managerCost: "", rdCost: "", year: temp[0], type: "" })
+            break;
+            case 2:
+            let fYear2 = this.form.specialAuditCost.specialAuditList[0].year;
+            let sYear = this.form.specialAuditCost.specialAuditList[1].year;
+            temp.map((x,i)=>{
+              if(x == fYear2)temp.splice(i,1);
+            })
+            temp.map((x,i)=>{
+              if(x == sYear)temp.splice(i,1);
+            })
+            this.form.specialAuditCost.specialAuditList.push({ incoming: "", managerCost: "", rdCost: "", year: temp[0], type: "" })
+            break;
+          }
+        }
+      }
     },
     removeSpecialAuditList(index) {
       //移除知识产权
@@ -777,7 +805,7 @@ export default {
     let nowYear = new Date().getFullYear();
     // this.form.specialAuditCost.applyYear = nowYear;
     // console.log('nowYear',nowYear)
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 10; i++) {
       let str = nowYear++;
       this.nearYears.push({ value: str, label: str });
     }
