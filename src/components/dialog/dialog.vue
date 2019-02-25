@@ -3,7 +3,7 @@
     <el-dialog
         title=""
         :visible.sync="dialogConfig.centerDialogVisible"
-        width="35%"
+        width="588px"
         @open='open'
         center>
         <slot name='bodyArea' ></slot>

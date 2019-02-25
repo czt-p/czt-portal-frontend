@@ -13,7 +13,8 @@ module.exports = {
         port:8888,
         proxy:{
             '/develop':{
-                target: 'http://192.168.0.65:9090',
+                target: 'http://cezhitong.com',
+                // target: 'http://192.168.0.65:9090',
                 changeOrigin:true,
                 ws:true,
                 pathRewrite:{

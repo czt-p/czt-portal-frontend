@@ -31,14 +31,14 @@
             <el-form-item label="" label-width='0'>
               <el-input class='rightOne' readonly  v-model="x.year"></el-input>年度
             </el-form-item>
-            <el-form-item label="营业收入：" label-width='95px' :prop="'specialAuditCost.specialAuditList.'+i+'.incoming'" 
+            <el-form-item label="营业收入：" label-width='95px' :prop="'specialAuditCost.specialAuditList.'+i+'.incoming'"
               :rules="[
                 { required: true, message: '请输入营业收入'}, 
                 { type: 'number', message: '营业收入必须为数字值'}
               ]">
               <el-input class='rightOne' type="number" min='0' v-model.number="x.incoming"></el-input>万元
             </el-form-item>
-            <el-form-item label="其中：" label-width='65px' :prop="'specialAuditCost.specialAuditList.'+i+'.type'" 
+            <el-form-item label="其中：" label-width='80px' :prop="'specialAuditCost.specialAuditList.'+i+'.type'"
               :rules="[
                 { required: true, message: '请选择费用类型'}, 
               ]">
@@ -47,14 +47,14 @@
                 <el-option label="管理费用" value="1"></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="投入金额：" label-width='95px' v-if='x.type==0' :prop="'specialAuditCost.specialAuditList.'+i+'.rdCost'" 
+            <el-form-item label="投入金额：" label-width='95px' v-if='x.type==0' :prop="'specialAuditCost.specialAuditList.'+i+'.rdCost'"
               :rules="[
                 { required: true, message: '请输入投入金额'}, 
                 { type: 'number', message: '投入金额必须为数字值'}
               ]">
               <el-input class='rightOne' min='0' type='number'  v-model.number="x.rdCost"></el-input>万元
             </el-form-item>
-            <el-form-item label="投入金额：" label-width='95px' v-else :prop="'specialAuditCost.specialAuditList.'+i+'.managerCost'" 
+            <el-form-item label="投入金额：" label-width='95px' v-else :prop="'specialAuditCost.specialAuditList.'+i+'.managerCost'"
               :rules="[
                 { required: true, message: '请输入投入金额'}, 
                 { type: 'number', message: '投入金额必须为数字值'}
@@ -62,7 +62,7 @@
               <el-input class='rightOne' min='0' type='number' v-model.number="x.managerCost"></el-input>万元
             </el-form-item>
           </div>
-          <div class="tips">根据高新技术企业申请规定，需要至少申报申请年度最近3年的营业收入及研发费用（管理费用）投入情况</div>
+          <!-- <div class="tips">根据高新技术企业申请规定，需要至少申报申请年度最近3年的营业收入及研发费用（管理费用）投入情况</div> -->
         </div>
         <div class="consulting">
           <div class="title">知识产权费用</div>
@@ -121,7 +121,7 @@
             <el-button type="primary" v-if='form.annualAuditCost.annualAuditList.length==2 && i == 0' :disabled="form.annualAuditCost.isCheck==0" icon='el-icon-plus' class='addIP'  @click="addAnnualAuditList(i)">新增</el-button>
             <el-button type="primary" style='background:#f44336;' v-if='i==2' :disabled="form.annualAuditCost.isCheck==0" icon='el-icon-delete' class='addIP'  @click="romoveAnnualAuditList(i)">删除</el-button>
           </div>
-          <div class='tips'>根据高架高新技术企业申请规定，需要至少申报申请年度最近2年的资产总额数据</div>
+          <!-- <div class='tips'>根据高架高新技术企业申请规定，需要至少申报申请年度最近2年的资产总额数据</div> -->
         </div>
         <div class="consulting">
           <div class="title">其他费用</div>
@@ -549,5 +549,36 @@ export default {
 }
 input[type="number"]{
   padding-right:0!important;
+}
+/*移动端or低分辨率样式补丁*/
+@media (max-device-width:768px ){
+  .costing{
+    .wrap{
+      width: 90% !important;
+      .posInt{
+        width: 80% !important;
+      }
+      .inline{
+        .el-form-item{
+          display: inline-block;
+          margin-right: 20px;
+        }
+      }
+      .moreInput{
+        .el-form-item{
+          margin-right: 3.5%;
+          .el-input{
+            width:80px;
+          }
+          .el-select{
+            width: 100px;
+            .el-input{
+              width: 100px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 </style>

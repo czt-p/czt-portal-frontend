@@ -183,4 +183,15 @@
     .el-menu--horizontal .el-menu-item:not(.is-disabled):focus, .el-menu--horizontal .el-menu-item:not(.is-disabled):hover {
         color: #303133!important;
     }
+    
+    /*移动端or低分辨率样式补丁*/
+    @media (max-device-width:768px ){
+        .logo {
+            position: static!important;
+            margin-left: 4%;
+        }
+        .menu{
+            margin: 0;
+        }
+    }
 </style>

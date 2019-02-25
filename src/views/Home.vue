@@ -53,14 +53,14 @@
               <p>3、配置稳定的技术团队</p>
               <p>4、开展持续的技术研发活动</p>
               <p>5、认定前一年自主知识产权的产品（服务）已实现销售</p>
-              <el-button style='bottom: -39%;left:35%;' @click="goPage('/evaluating')" class='waveBtn1'>免费测一测</el-button>
+              <el-button style='bottom: -100px;left:35%;' @click="goPage('/evaluating')" class='waveBtn1'>免费测一测</el-button>
             </div>
           </div>
         <!-- </el-tab-pane> -->
         <!-- <el-tab-pane label="" name="second"> -->
           
           <div class='contentArea animated fadeInUpBig' style='vertical-align:text-bottom;' id='p2'>
-            <div class="rightContent" style="padding-left: 15%;box-sizing: border-box;">
+            <div class="rightContent extend_rightContent">
               <h1 style="border-color:#FF8D26;">高企资助查询</h1>
               <p>HIGH-TECH ENTERPRISE FUNDING FOR THE QUERY</p>
               <p>1、企业所得税税率由25%降低至15%</p>
@@ -68,7 +68,7 @@
               <p>3、国家级荣誉</p>
               <p>4、提升企业品牌</p>
               <p>5、500万以上的银行信用贷款资质证明</p>
-              <el-button @click="goPage('/subsidize')" class='waveBtn2' style="box-shadow:0px 4px 20px 0px rgba(255,141,38,1);background:rgba(255,141,38,1);margin-left: -3%;bottom:-30%;">资助快速查</el-button>
+              <el-button @click="goPage('/subsidize')" class='waveBtn2' style="box-shadow:0px 4px 20px 0px rgba(255,141,38,1);background:rgba(255,141,38,1);margin-left: -3%;bottom:-100px;">资助快速查</el-button>
             </div>
             <div class="leftContent" style="text-align: left;">
               <img src="../assets/images/index/home_img_gqcx.png" alt="">
@@ -88,7 +88,7 @@
               <p>2、审计报告费用 </p>
               <p>3、知识产权费用</p>
               <p>4、其他</p>
-              <el-button class='waveBtn3' style='bottom: -27%;left:30%;' @click="goPage('/costing')">高企成本免费估</el-button>
+              <el-button class='waveBtn3' style='bottom: -100px;left:30%;' @click="goPage('/costing')">高企成本免费估</el-button>
             </div>
           </div>
         <!-- </el-tab-pane> -->
@@ -204,13 +204,18 @@ export default {
     }
   },
   mounted(){
-    let screenWidth = window.screen.width-0;
+    // let screenWidth = window.screen.width-0
+    //考虑到移动端，此处不应使用屏幕分辨率的宽，而是使用游览器的宽度
+    let screenWidth = document.body.clientWidth - 0
+    let screenHeight = window.screen.height - 0
+    // console.log(screenWidth)
     this.liWidth = (screenWidth*191/1440)+'px';
     this.liHeight = (this.liWidth*140/191)+'px';
     this.imgListWidth = (screenWidth*191/1440)*5+'px';
     this.tabHeadWidth = screenWidth*387/1440+'px';
     this.tabHeadHeight = screenWidth*387/1440*88/387+'px';
-    this.carouseData1.carouselHeight = (screenWidth*810/1440)-90+'px';
+    // this.carouseData1.carouselHeight = (screenWidth*640/1440)+'px';
+    this.carouseData1.carouselHeight = (screenHeight-210)+'px';
     this.carouseData2.carouselHeight = (screenWidth*260/1440)+'px';
   }
 }
@@ -432,5 +437,16 @@ export default {
       }
     } 
   }
+.extend_rightContent{
+  padding-left: 15%;
+  box-sizing: border-box;
+}
+/*移动端or低分辨率样式补丁*/
+@media (max-device-width:768px ){
+  .extend_rightContent{
+    padding-left: 8%;
+    box-sizing: border-box;
+  }
+}
 </style>
 

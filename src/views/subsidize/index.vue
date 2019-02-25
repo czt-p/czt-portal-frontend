@@ -416,4 +416,36 @@ export default {
         }
     }
 }
+
+/*移动端or低分辨率样式补丁*/
+@media (max-device-width:768px ){
+    .wrap{
+        padding: 0 16px;
+        .topSearch{
+            .el-tabs{
+                box-sizing: border-box;
+                padding-left: 10%!important;
+            }
+        }
+        .downArea{
+            .leftArea{
+                flex: 1 1 auto;
+                width: 0%;
+                min-width: auto!important;
+                margin-right: 16px;
+                li{
+                    padding:20px 40px!important;
+                    .title{
+                        font-size: 14px!important;
+                        flex-wrap: nowrap;
+                        white-space: nowrap;
+                    }
+                }
+            }
+            .rightArea{
+                min-width: auto!important;
+            }
+        }
+    }
+}
 </style>

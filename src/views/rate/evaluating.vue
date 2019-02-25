@@ -219,6 +219,15 @@ export default {
   }
 }
 
-
+/*移动端or低分辨率样式补丁*/
+@media (max-device-width:768px ){
+  .btnArea{
+    padding:100px;
+    button{
+      min-width:25%;
+      width:auto!important;
+    }
+  }
+}
 
 </style>
