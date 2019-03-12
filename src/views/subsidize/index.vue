@@ -209,13 +209,13 @@ export default {
             this.loadMore = false;
         })
       },
-      initHotSearch(){//热门搜索
+      initHotSearch(){//热门搜索。。。
         recentModify().then(res=>{
             this.hotSearhList = res.data;
         })
       },
       toDetail(content){
-          console.log('content',content)
+        //   console.log('content',content)
           this.$router.push({name:'subsidizeDetail.html',params:{content}});
       },
       smoothscroll(){
