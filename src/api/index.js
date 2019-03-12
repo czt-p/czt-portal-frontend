@@ -1,8 +1,17 @@
 /** 
  * writen by jonah 2019年1月7日16:12:24
  */
-//高企评测
 import request from '../util/request.js'
+
+//seo
+export function getSeoConfig(obj) { //seo查询
+    return request({
+        url: 'seoConfig',
+        method: 'get',
+    })
+}
+
+//高企评测
 export function basicQuestions(obj) { //查询基础评测所有问题
     return request({
         url: 'highExams/basic/questions',

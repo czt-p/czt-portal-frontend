@@ -136,8 +136,14 @@
 // @ is an alias to /src
 import carousel from '@/components/carousel/index.vue'
 import btArea from '@/components/bottom/index.vue'
-
+import {getSeoConfig} from "@/api/index";
 export default {
+  metaInfo(){
+    return{
+      title: this.seoConfig.title, // set a title
+      meta: this.seoConfig.meta
+    }
+  },
   name: 'home',
   components: {
     carousel,
@@ -145,6 +151,13 @@ export default {
   },
   data() {
     return {
+      seoConfig:{
+        title:'策知通高新技术企业服务平台',
+        meta:[
+          {name:'description',content:'高企评测，高企问答，高新技术'},
+          {name:'keywords',content:'高企评测，高企问答，高新技术'}
+        ]
+      },
       activeName: 'first',
       liWidth:'',
       liHeight:'',
@@ -217,6 +230,13 @@ export default {
     // this.carouseData1.carouselHeight = (screenWidth*640/1440)+'px';
     this.carouseData1.carouselHeight = (screenHeight-210)+'px';
     this.carouseData2.carouselHeight = (screenWidth*260/1440)+'px';
+    // console.log('metaInfo',this.metaInfo)
+
+    //获取seo配置
+    getSeoConfig().then(res=>{
+      // console.log('res',res);
+      this.seoConfig = res.data;
+    })
   }
 }
 </script>

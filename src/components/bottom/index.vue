@@ -47,6 +47,11 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@media (max-device-width:768px ){
+    .footer .bottomArea .topArea {
+        padding-left: 5%!important;
+    }
+}
 .footer{
     position:absolute;
     width:100%;

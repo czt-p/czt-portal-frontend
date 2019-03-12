@@ -12,7 +12,9 @@ import util from './util/util'
 import  './style/quill.bubble.css'
 import  './style/quill.core.css'
 import  './style/quill.snow.css'
+import MetaInfo from 'vue-meta-info'
 
+Vue.use(MetaInfo)
 Vue.directive('posInt', function(el){
   var input = el;
   input.onkeyup = function (e) {

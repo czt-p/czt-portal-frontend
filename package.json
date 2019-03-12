@@ -14,8 +14,10 @@
     "normalize.css": "^8.0.1",
     "npm": "^6.8.0",
     "nprogress": "^0.2.0",
+    "prerender-spa-plugin": "^3.4.0",
     "vue": "^2.5.17",
     "vue-fullpage": "^2.0.5",
+    "vue-meta-info": "^0.1.7",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },
