@@ -14,12 +14,12 @@
                     text-color="#353C45"
                     :router='true'
                     active-text-color="rgba(13,112,238,1)">
-                    <el-menu-item index="/home.html">首页</el-menu-item>
-                    <el-menu-item index="/evaluating.html">高企评测</el-menu-item>
-                    <el-menu-item index="/subsidize.html">高企资助查询</el-menu-item>
-                    <el-menu-item index="/costing.html">高企成本核算</el-menu-item>
-                    <el-menu-item index="/FAQs.html">高企问答</el-menu-item>
-                    <el-menu-item index="/about.html">关于我们</el-menu-item>
+                    <el-menu-item index="/home">首页</el-menu-item>
+                    <el-menu-item index="/evaluating">高企评测</el-menu-item>
+                    <el-menu-item index="/subsidize">高企资助查询</el-menu-item>
+                    <el-menu-item index="/costing">高企成本核算</el-menu-item>
+                    <el-menu-item index="/FAQs">高企问答</el-menu-item>
+                    <el-menu-item index="/about">关于我们</el-menu-item>
                 </el-menu>
             </div>
         </div>

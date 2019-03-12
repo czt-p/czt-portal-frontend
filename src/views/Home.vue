@@ -188,7 +188,7 @@ export default {
       // console.log(tab, event);
     },
     goPage(path){
-      this.$router.push({path:path+'.html'});
+      this.$router.push({path});
     },
     scrollToP(num){
       // console.log("$('.root').height()",$('.root').height(),num)
