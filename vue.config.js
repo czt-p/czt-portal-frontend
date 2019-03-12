@@ -36,8 +36,8 @@ module.exports = {
                 // 编译后的html需要存放的路径
                 staticDir: path.join(__dirname, './dist'),
                 // 列出哪些路由需要预渲染
-                routes: ['/', '/home', '/evaluating', '/newRate', '/rateResult', '/subsidize',
-                    '/costing', '/FAQs', '/about'
+                routes: ['/', '/home.html', '/evaluating.html', '/newRate.html', '/rateResult.html', '/subsidize.html',
+                    '/costing.html', '/FAQs.html', '/about.html'
                 ]
             })
         ]
