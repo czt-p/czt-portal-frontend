@@ -235,7 +235,7 @@ export default {
     //获取seo配置
     getSeoConfig().then(res=>{
       // console.log('res',res);
-      this.seoConfig = res.data;
+      res.data?this.seoConfig = res.data:'';
     })
   }
 }
