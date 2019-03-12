@@ -12,10 +12,10 @@ Vue.use(Router)
   routes: [
     {
       path: '/',
-      redirect: '/home',
+      redirect: '/home.html',
     },
     {
-      path: '/home',
+      path: '/home.html',
       name: 'home',
       meta: {
         title: "首页", //要现实的title
@@ -24,7 +24,7 @@ Vue.use(Router)
       component: () => import('./views/Home.vue')
     },
     {
-      path: '/evaluating',
+      path: '/evaluating.html',
       name: 'evaluating',
       meta: {
         title: "高企评测", //要现实的title
@@ -33,7 +33,7 @@ Vue.use(Router)
       component: () => import('./views/rate/evaluating.vue'),
     },
     {
-      path: '/newRate',
+      path: '/newRate.html',
       name: 'newRate',
       meta: {
         title: "高新评分", //要现实的title
@@ -42,7 +42,7 @@ Vue.use(Router)
       component: () => import('./views/rate/newRate.vue'),
     },
     {
-      path: '/rateResult',
+      path: '/rateResult.html',
       name: 'rateResult',
       meta: {
         title: "评估结果及建议", //要现实的title
@@ -51,7 +51,7 @@ Vue.use(Router)
       component: () => import('./views/rate/rateResult.vue'),
     },
     {
-      path: '/subsidize',//高企资助查询
+      path: '/subsidize.html',//高企资助查询
       name: 'rateResult',
       meta: {
         title: "高企资助查询", //要现实的title
@@ -60,7 +60,7 @@ Vue.use(Router)
       component: () => import('./views/subsidize/index.vue'),
     },
     {
-      path: '/subsidize/detail', //高企资助查询
+      path: '/subsidize/detail.html', //高企资助查询
       name: 'subsidizeDetail',
       meta: {
         title: "高企资助查询详情", //要现实的title
@@ -69,7 +69,7 @@ Vue.use(Router)
       component: () => import('./views/subsidize/detail.vue'),
     },
     {
-      path: '/costing',//高企成本核算
+      path: '/costing.html',//高企成本核算
       name: 'costing',
       meta: {
         title: "高企成本核算", //要现实的title
@@ -78,7 +78,7 @@ Vue.use(Router)
       component: () => import('./views/costing/index.vue'),
     },
     {
-      path: '/FAQs',//高企问答
+      path: '/FAQs.html',//高企问答
       name: 'FAQs',
       meta: {
         title: "高企问答", //要现实的title
@@ -87,7 +87,7 @@ Vue.use(Router)
       component: () => import('./views/FAQs/index.vue'),
     },
     {
-      path: '/FAQs/detail', //高企资助查询
+      path: '/FAQs/detail.html', //高企资助查询
       name: 'FAQsDetail',
       meta: {
         title: "高企问答查询详情", //要现实的title
@@ -96,7 +96,7 @@ Vue.use(Router)
       component: () => import('./views/FAQs/detail.vue'),
     },
     {
-      path: '/about',
+      path: '/about.html',
       name: 'about',
       meta: {
         title: "关于我们", //要现实的title

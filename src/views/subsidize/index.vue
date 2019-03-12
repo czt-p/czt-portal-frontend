@@ -216,7 +216,7 @@ export default {
       },
       toDetail(content){
           console.log('content',content)
-          this.$router.push({name:'subsidizeDetail',params:{content}});
+          this.$router.push({name:'subsidizeDetail.html',params:{content}});
       },
       smoothscroll(){
         var currentScroll = $('.leftArea').scrollTop();

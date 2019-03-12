@@ -79,7 +79,7 @@ export default {
             this.dialogConfig.centerDialogVisible = true;
             // this.$router.push({path:'/newRate'})
           }else{
-            this.$router.push({path:'/newRate'})
+            this.$router.push({path:'/newRate.html'})
           }
         }).catch(err=>{
           this.loading = false;

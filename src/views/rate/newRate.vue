@@ -158,7 +158,7 @@ export default {
           this.loading = false;
           if(res.success){
             // this.dialogConfig.centerDialogVisible = true;
-            this.$router.push({path:'/rateResult',query:{score:res.data.score}})
+            this.$router.push({path:'/rateResult.html',query:{score:res.data.score}})
           }else{
             this.$alert(`${res.msg}`||'网络错误，请刷新重试。', '提示', {
               confirmButtonText: '确定',

@@ -120,7 +120,7 @@ export default {
         }
       },
       toDetail(data){
-          this.$router.push({name:'FAQsDetail',params:{data}});
+          this.$router.push({name:'FAQsDetail.html',params:{data}});
       },
       searchQue(){
         this.loading = true;

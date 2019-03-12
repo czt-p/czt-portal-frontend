@@ -40,19 +40,19 @@ import btArea from '@/components/bottom/index.vue';
 import aMap from '@/components/map/map.vue';
 export default {
   name: '',
-   metaInfo: {
-    title: '关于我们-策知通', // set a title
-    meta: [
-      {                 // set meta
-        name: 'keyWords',
-        content: '策知通'
-      },
-      {                 // set meta
-        name: 'description',
-        content: '杭州快知科技有限公司'
-      }
-    ]
-  },
+  //  metaInfo: {
+  //   title: '关于我们-策知通', // set a title
+  //   meta: [
+  //     {                 // set meta
+  //       name: 'keyWords',
+  //       content: '策知通'
+  //     },
+  //     {                 // set meta
+  //       name: 'description',
+  //       content: '杭州快知科技有限公司'
+  //     }
+  //   ]
+  // },
   data () {
     return {
       activeName: 'first',
