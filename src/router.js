@@ -10,12 +10,12 @@ Vue.use(Router)
  const router = new Router({
   mode:'history',
   routes: [
+    // {
+    //   path: '/',
+    //   redirect: '/home',
+    // },
     {
       path: '/',
-      redirect: '/home',
-    },
-    {
-      path: '/home',
       name: 'home',
       meta: {
         title: "首页", //要现实的title

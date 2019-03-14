@@ -38,21 +38,15 @@
 import {mapState, mapActions} from 'vuex';
 import btArea from '@/components/bottom/index.vue';
 import aMap from '@/components/map/map.vue';
+import {getSeoConfig} from "@/api/index";
 export default {
-  name: '',
-  //  metaInfo: {
-  //   title: '关于我们-策知通', // set a title
-  //   meta: [
-  //     {                 // set meta
-  //       name: 'keyWords',
-  //       content: '策知通'
-  //     },
-  //     {                 // set meta
-  //       name: 'description',
-  //       content: '杭州快知科技有限公司'
-  //     }
-  //   ]
-  // },
+  metaInfo(){
+    return{
+      title: this.seoConfig.title, // set a title
+      meta: this.seoConfig.meta
+    }
+  },
+  name: 'about',
   data () {
     return {
       activeName: 'first',
@@ -73,11 +67,16 @@ export default {
   },
   methods: {
     handleClick(tab, event) {
-      console.log(tab, event);
+      // console.log(tab, event);
     }
   },
   mounted(){
-
+    // console.log('seoConfig:',this.seoConfig)
+    //获取seo配置
+    getSeoConfig(this.$options.name).then(res=>{
+      // console.log('res',res);
+      res.data&& res.data.meta?this.seoConfig = res.data:'';
+    })
   },
 }
 </script>

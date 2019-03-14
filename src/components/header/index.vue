@@ -14,7 +14,7 @@
                     text-color="#353C45"
                     :router='true'
                     active-text-color="rgba(13,112,238,1)">
-                    <el-menu-item index="/home">首页</el-menu-item>
+                    <el-menu-item index="/">首页</el-menu-item>
                     <el-menu-item index="/evaluating">高企评测</el-menu-item>
                     <el-menu-item index="/subsidize">高企资助查询</el-menu-item>
                     <el-menu-item index="/costing">高企成本核算</el-menu-item>
@@ -95,6 +95,7 @@
             }
         },
         mounted(){
+            // console.log('$',$)
             this.activeIndex = this.$route.path;
             let that = this;
             this.watchScroll();

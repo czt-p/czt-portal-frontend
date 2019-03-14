@@ -4,9 +4,9 @@
 import request from '../util/request.js'
 
 //seo
-export function getSeoConfig(obj) { //seo查询
+export function getSeoConfig(pageCode) { //seo查询
     return request({
-        url: 'seoConfig',
+        url: 'seoConfigs/'+pageCode,
         method: 'get',
     })
 }

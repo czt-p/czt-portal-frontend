@@ -443,10 +443,17 @@ import {
   ipType,
   otherCostType,
   recentYearIncoming,
-  costAccount
+  costAccount,
+  getSeoConfig
 } from "@/api/index";
 export default {
-  name: "",
+   metaInfo(){
+    return{
+      title: this.seoConfig.title, // set a title
+      meta: this.seoConfig.meta
+    }
+  },
+  name: "costing",
   data() {
     var validPhone = (rule, value, callback) => {
       if (!value) {
@@ -458,6 +465,13 @@ export default {
       }
     };
     return {
+      // seoConfig:{
+      //   title:'关于我们',
+      //   meta:[
+      //     {name:'description',content:'高企评测，高企问答，高新技术 关于我们'},
+      //     {name:'keywords',content:'高企评测，高企问答，高新技术 关于我们'}
+      //   ]
+      // },
       form: {
         consultCost: {
           isCheck: 1,
@@ -481,10 +495,6 @@ export default {
               quantity: "", //所需数量
               type: "" //其他费用类型
             }
-            // {
-            //   quantity:'',//所需数量
-            //   type:'',//其他费用类型
-            // }
           ]
         },
         specialAuditCost: {
@@ -499,20 +509,6 @@ export default {
               year: "",
               type: "0"
             },
-            // {
-            //   incoming: "",
-            //   managerCost: "",
-            //   rdCost: "",
-            //   year: "",
-            //   type: "0"
-            // },
-            // {
-            //   incoming: "",
-            //   managerCost: "",
-            //   rdCost: "",
-            //   year: "",
-            //   type: "0"
-            // }
           ]
         },
         annualAuditCost: {
@@ -781,6 +777,11 @@ export default {
     }
   },
   mounted() {
+    //获取seo配置
+    getSeoConfig(this.$options.name).then(res=>{
+      // console.log('res',res);
+      res.data&& res.data.meta?this.seoConfig = res.data:'';
+    })
     //初始化下拉菜单的选项列表
     let temp = [
       financialGrowth,

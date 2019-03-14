@@ -40,11 +40,24 @@
 import {mapState, mapActions} from 'vuex';
 import btArea from '@/components/bottom/index.vue';
 import yyDialog from '@/components/dialog/dialog.vue';
-import {basicQuestions,submitBasic} from '@/api/index';
+import {basicQuestions,submitBasic,getSeoConfig} from '@/api/index';
 export default {
-  name: '',
+  name: 'evaluating',
+  metaInfo(){
+    return{
+      title: this.seoConfig.title, // set a title
+      meta: this.seoConfig.meta
+    }
+  },
   data () {
     return {
+      // seoConfig:{
+      //   title:'关于我们',
+      //   meta:[
+      //     {name:'description',content:'高企评测，高企问答，高新技术 关于我们'},
+      //     {name:'keywords',content:'高企评测，高企问答，高新技术 关于我们'}
+      //   ]
+      // },
       basicQuestions:'',//基础评估问题列表
       dialogConfig:{
         centerDialogVisible:false
@@ -102,18 +115,16 @@ export default {
     }
   },
   mounted(){
+    //获取seo配置
+    getSeoConfig(this.$options.name).then(res=>{
+      // console.log('res',res);
+      res.data&& res.data.meta?this.seoConfig = res.data:'';
+    })
     this.loading = true;
     basicQuestions().then(res=>{
       // console.log('res',res)
       this.basicQuestions = res.data;
       this.loading = false;
-      // this.basicQuestions[0].options.push({id:3,content:'最近一年销售收入在5,000万元至2亿元（含）的企业，比例不低于4%；'});
-      // this.basicQuestions[0].options.push({id:3,content:'1 项及以上 （Ⅰ类：包括发明专利（含国防专利、植物新品种、国家级农作物品种、国家新药、国家一级中药保护品种、集成电路布图设计专有权等）'})
-      // this.basicQuestions[0].options.push({id:3,content:'强'})
-      // this.basicQuestions[0].options.push({id:4,content:'fdf强'})
-      // this.basicQuestions[0].options.push({id:4,content:'jklf强'})
-      // this.basicQuestions[0].options.shift();
-      // this.basicQuestions[0].options.shift();
     }).catch(err=>{
       this.loading = false;
     })

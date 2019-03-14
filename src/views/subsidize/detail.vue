@@ -13,8 +13,15 @@
 <script>
 import {mapState, mapActions} from 'vuex';
 import btArea from '@/components/bottom/index.vue';
+import {getSeoConfig} from "@/api/index";
 export default {
-  name: '',
+  name: 'subsidizeDetail',
+  metaInfo(){
+    return{
+      title: this.seoConfig.title, // set a title
+      meta: this.seoConfig.meta
+    }
+  },
   data () {
     return {
         name:'',
@@ -33,6 +40,11 @@ export default {
 
   },
   mounted(){
+    //获取seo配置
+    getSeoConfig(this.$options.name).then(res=>{
+      // console.log('res',res);
+      res.data&& res.data.meta?this.seoConfig = res.data:'';
+    })
     //   console.log('query',this.$route)
     this.name = this.$route.params.content.name;
     this.detail = this.$route.params.content.content;

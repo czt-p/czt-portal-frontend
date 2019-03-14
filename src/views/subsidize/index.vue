@@ -74,10 +74,16 @@
 
 <script>
 import {mapState, mapActions} from 'vuex';
-import {getRegions,recentModify,subsidyPolicies,searchByCompany,searchByRegionCode} from '@/api/index';
+import {getRegions,recentModify,subsidyPolicies,searchByCompany,searchByRegionCode,getSeoConfig} from '@/api/index';
 import btArea from '@/components/bottom/index.vue';
 export default {
-  name: '',
+  name: 'subsidize',
+  metaInfo(){
+    return{
+      title: this.seoConfig.title, // set a title
+      meta: this.seoConfig.meta
+    }
+  },
   data () {
     return {
         companyName:'',
@@ -227,6 +233,11 @@ export default {
       }
   },
   mounted(){
+      //获取seo配置
+        getSeoConfig(this.$options.name).then(res=>{
+        // console.log('res',res);
+        res.data&& res.data.meta?this.seoConfig = res.data:'';
+        })
       getRegions().then(res=>{
           this.regionList = res.data;
       });

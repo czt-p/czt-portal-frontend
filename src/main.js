@@ -13,7 +13,6 @@ import  './style/quill.bubble.css'
 import  './style/quill.core.css'
 import  './style/quill.snow.css'
 import MetaInfo from 'vue-meta-info'
-
 Vue.use(MetaInfo)
 Vue.directive('posInt', function(el){
   var input = el;
@@ -27,9 +26,29 @@ Vue.directive('posInt', function(el){
 });
 
 Vue.config.productionTip = false
-
+Vue.mixin({
+  data () {
+    return{
+      seoConfig: {
+        title: '策知通高新技术企业服务平台',
+        meta: [{
+            name: 'description',
+            content: '高企评测，高企问答，高新技术 关于我们'
+          },
+          {
+            name: 'keywords',
+            content: '高企评测，高企问答，高新技术 关于我们'
+          }
+        ]
+      },
+    }
+  }
+})
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
+  // mounted() {
+  //   document.dispatchEvent(new Event('render-event'))
+  // }
 }).$mount('#app')

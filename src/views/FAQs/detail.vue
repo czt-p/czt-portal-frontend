@@ -12,12 +12,26 @@
 <script>
 import {mapState, mapActions} from 'vuex';
 import btArea from '@/components/bottom/index.vue';
+import {getSeoConfig} from "@/api/index";
 export default {
-  name: '',
+  name: 'FAQsDetail',
+  metaInfo(){
+    return{
+      title: this.seoConfig.title, // set a title
+      meta: this.seoConfig.meta
+    }
+  },
   data () {
     return {
-        name:'',
-        detail:'',
+      // seoConfig:{
+      //   title:'问答详情',
+      //   meta:[
+      //     {name:'description',content:'高企评测，高企问答，高新技术 关于我们'},
+      //     {name:'keywords',content:'高企评测，高企问答，高新技术 关于我们'}
+      //   ]
+      // },
+      name:'',
+      detail:'',
     }
   },
   computed: {
@@ -32,6 +46,13 @@ export default {
 
   },
   mounted(){
+    // console.log('seoConfigdetail',this.seoConfig);
+    
+    //获取seo配置
+    getSeoConfig(this.$options.name).then(res=>{
+      // console.log('res',res);
+      res.data&& res.data.meta?this.seoConfig = res.data:'';
+    })
     //   console.log('query',this.$route)
     this.name = this.$route.params.data.question;
     this.detail = this.$route.params.data.answer;

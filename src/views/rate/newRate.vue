@@ -120,9 +120,15 @@
 <script>
 import {mapState, mapActions} from 'vuex';
 import btArea from '@/components/bottom/index.vue';
-import {highQuestions,submitHigh} from '@/api/index';
+import {highQuestions,submitHigh,getSeoConfig} from '@/api/index';
 export default {
-  name: '',
+  name: 'newRate',
+  metaInfo(){
+    return{
+      title: this.seoConfig.title, // set a title
+      meta: this.seoConfig.meta
+    }
+  },
   data () {
     return {
       highQuestionsList:[],//高新问题列表
@@ -183,6 +189,11 @@ export default {
     },
   },
   mounted(){
+    //获取seo配置
+    getSeoConfig(this.$options.name).then(res=>{
+      // console.log('res',res);
+      res.data&& res.data.meta?this.seoConfig = res.data:'';
+    })
     this.loading = true;
     highQuestions().then(res=>{
       // console.log('res',res)

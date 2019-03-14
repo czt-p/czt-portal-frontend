@@ -71,12 +71,25 @@
 
 <script>
 import {mapState, mapActions} from 'vuex';
-import {getHighTechQ} from '@/api/index';
+import {getHighTechQ,getSeoConfig} from '@/api/index';
 import btArea from '@/components/bottom/index.vue';
 export default {
-  name: '',
+  name: 'FAQs',
+  metaInfo(){
+    return{
+      title: this.seoConfig.title, // set a title
+      meta: this.seoConfig.meta
+    }
+  },
   data () {
     return {
+        seoConfig:{
+            title:'高企问答',
+            meta:[
+            {name:'description',content:'高企评测，高企问答，高新技术 关于我们'},
+            {name:'keywords',content:'高企评测，高企问答，高新技术 关于我们'}
+            ]
+        },
         hightTechQList:[],
         param:{
             pageIndex:1,
@@ -161,6 +174,11 @@ export default {
       }
   },
   mounted(){
+      //获取seo配置
+    getSeoConfig(this.$options.name).then(res=>{
+      // console.log('res',res);
+      res.data&& res.data.meta?this.seoConfig = res.data:'';
+    })
     // this.param.primaryKey = window.sessionStorage.getItem('primaryKey');
       // 添加滚动事件，检测滚动到页面底部
     $('.leftArea')[0].addEventListener('scroll', this.scrollBottom);

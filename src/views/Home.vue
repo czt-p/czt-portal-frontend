@@ -151,13 +151,13 @@ export default {
   },
   data() {
     return {
-      seoConfig:{
-        title:'策知通高新技术企业服务平台',
-        meta:[
-          {name:'description',content:'高企评测，高企问答，高新技术'},
-          {name:'keywords',content:'高企评测，高企问答，高新技术'}
-        ]
-      },
+      // seoConfig:{
+      //   title:'策知通高新技术企业服务平台',
+      //   meta:[
+      //     {name:'description',content:'高企评测，高企问答，高新技术'},
+      //     {name:'keywords',content:'高企评测，高企问答，高新技术'}
+      //   ]
+      // },
       activeName: 'first',
       liWidth:'',
       liHeight:'',
@@ -233,9 +233,11 @@ export default {
     // console.log('metaInfo',this.metaInfo)
 
     //获取seo配置
-    getSeoConfig().then(res=>{
-      // console.log('res',res);
-      res.data?this.seoConfig = res.data:'';
+    // console.log('this.$options.name',this.$options.name);
+    
+    getSeoConfig(this.$options.name).then(res=>{
+      res.data&& res.data.meta?this.seoConfig = res.data:'';
+      // console.log('this.seoConfig ',this.seoConfig );
     })
   }
 }

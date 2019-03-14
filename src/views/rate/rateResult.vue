@@ -45,9 +45,15 @@
 import {mapState, mapActions} from 'vuex';
 import btArea from '@/components/bottom/index.vue';
 import yyDialog from '@/components/dialog/dialog.vue';
-import {getResult} from '@/api/index';
+import {getResult,getSeoConfig} from '@/api/index';
 export default {
-  name: '',
+  name: 'rateResult',
+  metaInfo(){
+    return{
+      title: this.seoConfig.title, // set a title
+      meta: this.seoConfig.meta
+    }
+  },
   data () {
     var validPhone=(rule, value,callback)=>{
         if (!value){
@@ -141,6 +147,11 @@ export default {
    
   },
   mounted(){
+    //获取seo配置
+    getSeoConfig(this.$options.name).then(res=>{
+      // console.log('res',res);
+      res.data&& res.data.meta?this.seoConfig = res.data:'';
+    })
     $('.resultArea').height( $('.resultArea').width()*439/768);
     // console.log(this.$route)
     this.$nextTick(()=>{
