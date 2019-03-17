@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import MapLoader from '@/assets/AMap.js'
+// import MapLoader from '@/assets/AMap.js'
 import {mapState, mapActions} from 'vuex';
 export default {
   name: '',
@@ -24,7 +24,9 @@ export default {
 
   },
   mounted(){
-    MapLoader().then(AMap=>{
+    // MapLoader().then(AMap=>{
+    //   console.log('AMap',AMap);
+      
       var map = new AMap.Map('container', {
           zoom:16,//级别
           // center: [120.145851,30.279028],//中心点坐标
@@ -39,7 +41,10 @@ export default {
 
       // 将创建的点标记添加到已有的地图实例：
       map.add(marker);
-    })
+    // }).catch(err=>{
+    //   console.log('err',err);
+      
+    // })
   },
 }
 </script>

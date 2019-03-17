@@ -13,7 +13,7 @@ import  './style/quill.bubble.css'
 import  './style/quill.core.css'
 import  './style/quill.snow.css'
 import MetaInfo from 'vue-meta-info'
-import ppmessage from '@/assets/ppmessage.js'
+// import ppmessage from '@/assets/ppmessage.js'
 Vue.use(MetaInfo)
 Vue.directive('posInt', function(el){
   var input = el;
@@ -34,6 +34,6 @@ new Vue({
   render: h => h(App),
   mounted() {
     document.dispatchEvent(new Event('render-event'));
-    ppmessage();
+    // ppmessage();
   }
 }).$mount('#app')

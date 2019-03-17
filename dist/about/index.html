@@ -3,41 +3,294 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="http://webapi.amap.com/theme/v1.3/style1536672475627.css">
+    <style type="text/css">
+        .amap-indoor-map .label-canvas {
+            position: absolute;
+            top: 0;
+            left: 0
+        }
+
+        .amap-indoor-map .highlight-image-con * {
+            pointer-events: none
+        }
+
+        .amap-indoormap-floorbar-control {
+            position: absolute;
+            margin: auto 0;
+            bottom: 165px;
+            right: 12px;
+            width: 35px;
+            text-align: center;
+            line-height: 1.3em;
+            overflow: hidden;
+            padding: 0 2px
+        }
+
+        .amap-indoormap-floorbar-control .panel-box {
+            background-color: rgba(255, 255, 255, .9);
+            border-radius: 3px;
+            border: 1px solid #ccc
+        }
+
+        .amap-indoormap-floorbar-control .select-dock {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            box-sizing: border-box;
+            height: 30px;
+            border: solid #4196ff;
+            border-width: 0 2px;
+            border-radius: 2px;
+            pointer-events: none;
+            background: linear-gradient(to bottom, #f6f8f9 0, #e5ebee 50%, #d7dee3 51%, #f5f7f9 100%)
+        }
+
+        .amap-indoor-map .transition {
+            transition: opacity .2s
+        }
+
+        ,
+        .amap-indoormap-floorbar-control .transition {
+            transition: top .2s, margin-top .2s
+        }
+
+        .amap-indoormap-floorbar-control .select-dock:after,
+        .amap-indoormap-floorbar-control .select-dock:before {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            left: 0;
+            top: 10px;
+            border: solid transparent;
+            border-width: 4px;
+            border-left-color: #4196ff
+        }
+
+        .amap-indoormap-floorbar-control .select-dock:after {
+            right: 0;
+            left: auto;
+            border-left-color: transparent;
+            border-right-color: #4196ff
+        }
+
+        .amap-indoormap-floorbar-control.is-mobile {
+            width: 37px
+        }
+
+        .amap-indoormap-floorbar-control.is-mobile .floor-btn {
+            height: 35px;
+            line-height: 35px
+        }
+
+        .amap-indoormap-floorbar-control.is-mobile .select-dock {
+            height: 35px;
+            top: 36px
+        }
+
+        .amap-indoormap-floorbar-control.is-mobile .select-dock:after,
+        .amap-indoormap-floorbar-control.is-mobile .select-dock:before {
+            top: 13px
+        }
+
+        .amap-indoormap-floorbar-control.is-mobile .floor-list-box {
+            height: 105px
+        }
+
+        .amap-indoormap-floorbar-control .floor-list-item .floor-btn {
+            color: #555;
+            font-family: "Times New Roman", sans-serif, "Microsoft Yahei";
+            font-size: 16px
+        }
+
+        .amap-indoormap-floorbar-control .floor-list-item.selected .floor-btn {
+            color: #000
+        }
+
+        .amap-indoormap-floorbar-control .floor-btn {
+            height: 28px;
+            line-height: 28px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none
+        }
+
+        .amap-indoormap-floorbar-control .floor-btn:hover {
+            background-color: rgba(221, 221, 221, .4)
+        }
+
+        .amap-indoormap-floorbar-control .floor-minus,
+        .amap-indoormap-floorbar-control .floor-plus {
+            position: relative;
+            text-indent: -1000em
+        }
+
+        .amap-indoormap-floorbar-control .floor-minus:after,
+        .amap-indoormap-floorbar-control .floor-plus:after {
+            content: "";
+            position: absolute;
+            margin: auto;
+            top: 9px;
+            left: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border: solid transparent;
+            border-width: 10px 8px;
+            border-top-color: #777
+        }
+
+        .amap-indoormap-floorbar-control .floor-minus.disabled,
+        .amap-indoormap-floorbar-control .floor-plus.disabled {
+            opacity: .3
+        }
+
+        .amap-indoormap-floorbar-control .floor-plus:after {
+            border-bottom-color: #777;
+            border-top-color: transparent;
+            top: -3px
+        }
+
+        .amap-indoormap-floorbar-control .floor-list-box {
+            max-height: 153px;
+            position: relative;
+            overflow-y: hidden
+        }
+
+        .amap-indoormap-floorbar-control .floor-list {
+            margin: 0;
+            padding: 0;
+            list-style: none
+        }
+
+        .amap-indoormap-floorbar-control .floor-list-item {
+            position: relative
+        }
+
+        .amap-indoormap-floorbar-control .floor-btn.disabled,
+        .amap-indoormap-floorbar-control .floor-btn.disabled *,
+        .amap-indoormap-floorbar-control.with-indrm-loader * {
+            -webkit-pointer-events: none !important;
+            pointer-events: none !important
+        }
+
+        .amap-indoormap-floorbar-control .with-indrm-loader .floor-nonas {
+            opacity: .5
+        }
+
+        .amap-indoor-map-moverf-marker {
+            color: #555;
+            background-color: #FFFEEF;
+            border: 1px solid #7E7E7E;
+            padding: 3px 6px;
+            font-size: 12px;
+            white-space: nowrap;
+            display: inline-block;
+            position: absolute;
+            top: 1em;
+            left: 1.2em
+        }
+
+        .amap-indoormap-floorbar-control .amap-indrm-loader {
+            -moz-animation: amap-indrm-loader 1.25s infinite linear;
+            -webkit-animation: amap-indrm-loader 1.25s infinite linear;
+            animation: amap-indrm-loader 1.25s infinite linear;
+            border: 2px solid #91A3D8;
+            border-right-color: transparent;
+            box-sizing: border-box;
+            display: inline-block;
+            overflow: hidden;
+            text-indent: -9999px;
+            width: 13px;
+            height: 13px;
+            border-radius: 7px;
+            position: absolute;
+            margin: auto;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0
+        }
+
+        @-moz-keyframes amap-indrm-loader {
+            0% {
+                -moz-transform: rotate(0);
+                transform: rotate(0)
+            }
+
+            100% {
+                -moz-transform: rotate(360deg);
+                transform: rotate(360deg)
+            }
+        }
+
+        @-webkit-keyframes amap-indrm-loader {
+            0% {
+                -webkit-transform: rotate(0);
+                transform: rotate(0)
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg)
+            }
+        }
+
+        @keyframes amap-indrm-loader {
+            0% {
+                -moz-transform: rotate(0);
+                -ms-transform: rotate(0);
+                -webkit-transform: rotate(0);
+                transform: rotate(0)
+            }
+
+            100% {
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg)
+            }
+        }
+    </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" href="/favicon.ico">
     <title>杭州策知通高新技术企业服务平台</title>
-    <link href="/assets/css/about.42f41319.css" rel="prefetch">
-    <link href="/assets/css/chunk-03253cf3.9de88808.css" rel="prefetch">
-    <link href="/assets/css/chunk-0b6a76ca.1ba7a748.css" rel="prefetch">
-    <link href="/assets/css/chunk-1a8a769e.d8ce85bf.css" rel="prefetch">
-    <link href="/assets/css/chunk-216c9652.341931a6.css" rel="prefetch">
-    <link href="/assets/css/chunk-252bbf68.a1871c8f.css" rel="prefetch">
-    <link href="/assets/css/chunk-2aa75203.d662c673.css" rel="prefetch">
-    <link href="/assets/css/chunk-3fe03cf0.90c279fe.css" rel="prefetch">
-    <link href="/assets/css/chunk-7140fdc5.56141d1d.css" rel="prefetch">
-    <link href="/assets/css/chunk-9cc79d1e.8b99bbd0.css" rel="prefetch">
-    <link href="/assets/js/about.baccd2f2.js" rel="prefetch">
-    <link href="/assets/js/chunk-03253cf3.b06127dd.js" rel="prefetch">
-    <link href="/assets/js/chunk-0b6a76ca.6b75849a.js" rel="prefetch">
-    <link href="/assets/js/chunk-1a8a769e.9212bba4.js" rel="prefetch">
-    <link href="/assets/js/chunk-216c9652.e7aabb2e.js" rel="prefetch">
-    <link href="/assets/js/chunk-252bbf68.13611798.js" rel="prefetch">
-    <link href="/assets/js/chunk-2aa75203.292b0277.js" rel="prefetch">
-    <link href="/assets/js/chunk-3fe03cf0.30f8078c.js" rel="prefetch">
-    <link href="/assets/js/chunk-7140fdc5.d69467a5.js" rel="prefetch">
-    <link href="/assets/js/chunk-9cc79d1e.03f2ae5d.js" rel="prefetch">
-    <link href="/assets/css/app.80abaa5c.css" rel="preload" as="style">
-    <link href="/assets/css/chunk-vendors.259f4620.css" rel="preload" as="style">
-    <link href="/assets/js/app.ac454984.js" rel="preload" as="script">
-    <link href="/assets/js/chunk-vendors.c77a13d5.js" rel="preload" as="script">
-    <link href="/assets/css/chunk-vendors.259f4620.css" rel="stylesheet">
-    <link href="/assets/css/app.80abaa5c.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/assets/css/about.42f41319.css">
-    <script charset="utf-8" src="/assets/js/about.baccd2f2.js"></script>
-    <meta data-vue-meta-info="true" name="keywords" content="">
-    <meta data-vue-meta-info="true" name="description" content="">
-    <script type="text/javascript" async="" src="http://webapi.amap.com/maps?v=1.3&amp;key=3455531464dfdc62bcf09689d07daa9f"></script>
+    <script type="text/javascript" async="" charset="utf-8" src="https://ppmessage.cn/ppcom/assets/pp-library.min.js"></script>
+    <script>window.ppSettings = {
+      app_uuid: '1462aa48-1d25-11e9-b2c7-00163e0c79f6'
+    };
+    (function () {
+      var w = window,
+        d = document;
+
+      function l() {
+        var a = d.createElement('script');
+        a.type = 'text/javascript';
+        a.async = !0;
+        a.charset = 'utf-8';
+        a.src = 'https://ppmessage.cn/ppcom/assets/pp-library.min.js';
+        // a.setAttribute('defer','defer');
+        var b = d.getElementsByTagName('script')[0];
+        b.parentNode.insertBefore(a, b);
+
+      }
+      l();
+    })();
+    // setTimeout(() => {
+    //   // console.log("document.querySelector('#pp-launcher-button')", document.querySelector(
+    //   // '#pp-launcher-button'))
+    //   if (document.querySelector('#pp-launcher-button')) document.querySelector('#pp-launcher-button').innerHTML =
+    //     '在线客服';
+    // }, 6500);</script>
+    <script src="http://webapi.amap.com/maps?v=1.3&amp;key=3455531464dfdc62bcf09689d07daa9f"></script>
     <style type="text/css">
         .amap-container {
             cursor: url(http://webapi.amap.com/theme/v1.3/openhand.cur), default;
@@ -47,6 +300,36 @@
             cursor: url(http://webapi.amap.com/theme/v1.3/closedhand.cur), default;
         }
     </style>
+    <link href="/assets/css/about.10901427.css" rel="prefetch">
+    <link href="/assets/css/chunk-03253cf3.9de88808.css" rel="prefetch">
+    <link href="/assets/css/chunk-0b6a76ca.1ba7a748.css" rel="prefetch">
+    <link href="/assets/css/chunk-1a8a769e.d8ce85bf.css" rel="prefetch">
+    <link href="/assets/css/chunk-216c9652.341931a6.css" rel="prefetch">
+    <link href="/assets/css/chunk-252bbf68.a1871c8f.css" rel="prefetch">
+    <link href="/assets/css/chunk-2aa75203.d662c673.css" rel="prefetch">
+    <link href="/assets/css/chunk-3fe03cf0.90c279fe.css" rel="prefetch">
+    <link href="/assets/css/chunk-7140fdc5.56141d1d.css" rel="prefetch">
+    <link href="/assets/css/chunk-9cc79d1e.8b99bbd0.css" rel="prefetch">
+    <link href="/assets/js/about.77d596f7.js" rel="prefetch">
+    <link href="/assets/js/chunk-03253cf3.b06127dd.js" rel="prefetch">
+    <link href="/assets/js/chunk-0b6a76ca.6b75849a.js" rel="prefetch">
+    <link href="/assets/js/chunk-1a8a769e.9212bba4.js" rel="prefetch">
+    <link href="/assets/js/chunk-216c9652.e7aabb2e.js" rel="prefetch">
+    <link href="/assets/js/chunk-252bbf68.13611798.js" rel="prefetch">
+    <link href="/assets/js/chunk-2aa75203.292b0277.js" rel="prefetch">
+    <link href="/assets/js/chunk-3fe03cf0.30f8078c.js" rel="prefetch">
+    <link href="/assets/js/chunk-7140fdc5.d69467a5.js" rel="prefetch">
+    <link href="/assets/js/chunk-9cc79d1e.03f2ae5d.js" rel="prefetch">
+    <link href="/assets/css/app.a59172c2.css" rel="preload" as="style">
+    <link href="/assets/css/chunk-vendors.259f4620.css" rel="preload" as="style">
+    <link href="/assets/js/app.1d5af650.js" rel="preload" as="script">
+    <link href="/assets/js/chunk-vendors.c77a13d5.js" rel="preload" as="script">
+    <link href="/assets/css/chunk-vendors.259f4620.css" rel="stylesheet">
+    <link href="/assets/css/app.a59172c2.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/css/about.10901427.css">
+    <script charset="utf-8" src="/assets/js/about.77d596f7.js"></script>
+    <meta data-vue-meta-info="true" name="keywords" content="">
+    <meta data-vue-meta-info="true" name="description" content="">
 </head>
 
 <body><noscript><strong>We're sorry but cezhitong doesn't work properly without JavaScript enabled. Please enable it to
@@ -105,8 +388,36 @@
                                     <p>地址：浙江省杭州市江干区红普路759号汇禾禧福汇电商创业大厦4-312室</p>
                                 </div>
                                 <div class="rightp fl">
-                                    <div data-v-8d0d8a64="" class="root" style="height: 400px; width: 100%;">
-                                        <div data-v-8d0d8a64="" id="container"></div>
+                                    <div data-v-49f682fe="" class="root" style="height: 400px; width: 100%;">
+                                        <div data-v-49f682fe="" id="container" class="amap-container" style="position: relative; background: rgb(252, 249, 242);"><object
+                                                style="display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; pointer-events: none; z-index: -1;"
+                                                type="text/html" data="about:blank"></object>
+                                            <div class="amap-maps">
+                                                <div class="amap-drags" style="">
+                                                    <div class="amap-layers" style="transform: translateZ(0px);">
+                                                        <div class="amap-layer" style="position: absolute; z-index: 0; top: 0px; left: 0px;"></div>
+                                                        <div class="amap-layer" style="position: absolute; z-index: 0; top: 0px; left: 0px;"><img
+                                                                src="http://wprd04.is.autonavi.com/appmaptile?lang=zh_cn&amp;size=1&amp;style=7&amp;x=54658&amp;y=26973&amp;z=16&amp;scl=1&amp;ltype=3"
+                                                                style="position: absolute; top: -73px; left: -188px; width: 256px; height: 256px; z-index: 16;"></div>
+                                                        <div class="amap-markers" style="position: absolute; z-index: 120; top: 0px; left: 0px;">
+                                                            <div class="amap-marker" style="top: -31px; left: -9px; z-index: 100; transform: rotate(0deg); transform-origin: 9px 31px; display: block;">
+                                                                <div class="amap-icon" title="杭州策知通科技网络有限公司" style="position: absolute; width: 19px; height: 33px; opacity: 1;"><img
+                                                                        src="http://webapi.amap.com/theme/v1.3/markers/n/mark_bs.png"
+                                                                        style="width: 19px; height: 33px; top: 0px; left: 0px;"></div>
+                                                            </div>
+                                                        </div><canvas class="amap-labels" draggable="false" width="0"
+                                                            height="0" style="position: absolute; z-index: 99; height: 0px; width: 0px; top: 0px; left: 0px;"></canvas><canvas
+                                                            class="amap-layer" width="0" height="0" style="position: absolute; z-index: 1; height: 0px; width: 0px; top: 0px; left: 0px;"></canvas>
+                                                    </div>
+                                                    <div class="amap-overlays" style=""></div>
+                                                </div>
+                                            </div>
+                                            <div style="display: none;"></div>
+                                            <div class="amap-controls"></div><a class="amap-logo" href="http://gaode.com"
+                                                target="_blank"><img src="http://webapi.amap.com/theme/v1.3/logo@1x.png"></a>
+                                            <div class="amap-copyright" style="display: none;">
+                                                <!--v1.3.28--> © 2019 AutoNavi <span class="amap-mcode">- GS(2018)1709号</span></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -138,13 +449,11 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" async="" charset="utf-8" src="https://ppmessage.cn/ppcom/assets/pp-library.min.js"></script>
     <script src="/assets/js/chunk-vendors.c77a13d5.js"></script>
-    <script src="/assets/js/app.ac454984.js"></script>
-    <script charset="utf-8" src="http://webapi.amap.com/maps/main?v=1.3&amp;key=3455531464dfdc62bcf09689d07daa9f&amp;m=http,map,anip,layers,overlay0,brender,mrender,mouse,vectorlayer,overlay,cmng,cgl,sync&amp;vrs=1536672475627"></script>
+    <script src="/assets/js/app.1d5af650.js"></script>
     <div id="pp-container" class="pp-container">
         <style id="pp-styles" type="text/css" class="pp-styles">
-            @charset "UTF-8"@charset 'UTF-8';
+            /* @charset "UTF-8"@charset 'UTF-8'; */
 
             /*! * animate.css -http://daneden.me/animate * Version - 3.5.1 * Licensed under the MIT license - http://opensource.org/licenses/MIT * * Copyright (c) 2016 Daniel Eden */
             .animated {
@@ -7664,7 +7973,7 @@
         <div id="pp-launcher" class="pp-launcher" style="display: block;">
             <div id="pp-launcher-container" style="bottom:20px; right:30px" class="pp-launcher-container">
                 <div id="pp-launcher-button-container" class="pp-launcher-button-container" style="background-color:#1F8CEB">
-                    <div id="pp-launcher-button" class="pp-launcher-button pp-unselectable" style="background-image: url(https://ppmessage.cn:443/ppcom/assets/img/icon-newacquire.png);background-color:#1F8CEB">在线客服</div>
+                    <div id="pp-launcher-button" class="pp-launcher-button pp-unselectable" style="background-image: url(https://ppmessage.cn:443/ppcom/assets/img/icon-newacquire.png);background-color:#1F8CEB"></div>
                     <div id="pp-launcher-button-close" class="pp-launcher-button pp-unselectable pp-launcher-button-close pp-launcher-button-close-hide"
                         style="background-image: url(https://ppmessage.cn:443/ppcom/assets/img/close.png);background-color:background-color:#1F8CEB"></div>
                 </div>
