@@ -35,5 +35,8 @@ new Vue({
   mounted() {
     document.dispatchEvent(new Event('render-event'));
     // ppmessage();
+    if (document.getElementById("pp-container")){
+      document.body.removeChild('')
+    }
   }
 }).$mount('#app')
