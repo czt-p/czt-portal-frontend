@@ -234,10 +234,19 @@ export default {
   },
   mounted(){
       //获取seo配置
-        getSeoConfig(this.$options.name).then(res=>{
-        // console.log('res',res);
-        res.data&& res.data.meta?this.seoConfig = res.data:'';
+      //获取seo配置
+        this.$axios.get('./tdk.json',{}).then(res=>{
+            const tdks = res.data;
+            tdks.map(x=>{
+                if(x.pageCode == this.$options.name){
+                this.seoConfig = x;
+                }
+            })
         })
+        // getSeoConfig(this.$options.name).then(res=>{
+        // // console.log('res',res);
+        // res.data&& res.data.meta?this.seoConfig = res.data:'';
+        // })
       getRegions().then(res=>{
           this.regionList = res.data;
       });

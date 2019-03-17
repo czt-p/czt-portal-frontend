@@ -148,10 +148,18 @@ export default {
   },
   mounted(){
     //获取seo配置
-    getSeoConfig(this.$options.name).then(res=>{
-      // console.log('res',res);
-      res.data&& res.data.meta?this.seoConfig = res.data:'';
+    this.$axios.get('./tdk.json',{}).then(res=>{
+        const tdks = res.data;
+        tdks.map(x=>{
+            if(x.pageCode == this.$options.name){
+            this.seoConfig = x;
+            }
+        })
     })
+    // getSeoConfig(this.$options.name).then(res=>{
+    //   // console.log('res',res);
+    //   res.data&& res.data.meta?this.seoConfig = res.data:'';
+    // })
     $('.resultArea').height( $('.resultArea').width()*439/768);
     // console.log(this.$route)
     this.$nextTick(()=>{

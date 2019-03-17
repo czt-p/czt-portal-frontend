@@ -41,10 +41,18 @@ export default {
   },
   mounted(){
     //获取seo配置
-    getSeoConfig(this.$options.name).then(res=>{
-      // console.log('res',res);
-      res.data&& res.data.meta?this.seoConfig = res.data:'';
+    this.$axios.get('./tdk.json',{}).then(res=>{
+        const tdks = res.data;
+        tdks.map(x=>{
+            if(x.pageCode == this.$options.name){
+            this.seoConfig = x;
+            }
+        })
     })
+    // getSeoConfig(this.$options.name).then(res=>{
+    //   // console.log('res',res);
+    //   res.data&& res.data.meta?this.seoConfig = res.data:'';
+    // })
     //   console.log('query',this.$route)
     this.name = this.$route.params.content.name;
     this.detail = this.$route.params.content.content;

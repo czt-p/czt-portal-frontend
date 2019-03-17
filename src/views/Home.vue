@@ -217,6 +217,7 @@ export default {
     }
   },
   mounted(){
+    // console.log('tihs.axios',this.$axios.get)
     // let screenWidth = window.screen.width-0
     //考虑到移动端，此处不应使用屏幕分辨率的宽，而是使用游览器的宽度
     let screenWidth = document.body.clientWidth - 0
@@ -233,12 +234,18 @@ export default {
     // console.log('metaInfo',this.metaInfo)
 
     //获取seo配置
-    // console.log('this.$options.name',this.$options.name);
-    
-    getSeoConfig(this.$options.name).then(res=>{
-      res.data&& res.data.meta?this.seoConfig = res.data:'';
-      // console.log('this.seoConfig ',this.seoConfig );
+    this.$axios.get('./tdk.json',{}).then(res=>{
+      const tdks = res.data;
+      tdks.map(x=>{
+        if(x.pageCode == this.$options.name){
+          this.seoConfig = x;
+        }
+      })
     })
+    // getSeoConfig(this.$options.name).then(res=>{
+    //   res.data&& res.data.meta?this.seoConfig = res.data:'';
+    //   // console.log('this.seoConfig ',this.seoConfig );
+    // })
   }
 }
 </script>

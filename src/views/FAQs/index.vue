@@ -175,10 +175,18 @@ export default {
   },
   mounted(){
       //获取seo配置
-    getSeoConfig(this.$options.name).then(res=>{
-      // console.log('res',res);
-      res.data&& res.data.meta?this.seoConfig = res.data:'';
+    this.$axios.get('./tdk.json',{}).then(res=>{
+        const tdks = res.data;
+        tdks.map(x=>{
+            if(x.pageCode == this.$options.name){
+            this.seoConfig = x;
+            }
+        })
     })
+    // getSeoConfig(this.$options.name).then(res=>{
+    //   // console.log('res',res);
+    //   res.data&& res.data.meta?this.seoConfig = res.data:'';
+    // })
     // this.param.primaryKey = window.sessionStorage.getItem('primaryKey');
       // 添加滚动事件，检测滚动到页面底部
     $('.leftArea')[0].addEventListener('scroll', this.scrollBottom);

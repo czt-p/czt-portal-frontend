@@ -13,6 +13,7 @@ import  './style/quill.bubble.css'
 import  './style/quill.core.css'
 import  './style/quill.snow.css'
 import MetaInfo from 'vue-meta-info'
+// import './@assets/tdk.json'
 Vue.use(MetaInfo)
 Vue.directive('posInt', function(el){
   var input = el;
@@ -48,7 +49,7 @@ new Vue({
   router,
   store,
   render: h => h(App),
-  // mounted() {
-  //   document.dispatchEvent(new Event('render-event'))
-  // }
+  mounted() {
+    document.dispatchEvent(new Event('render-event'))
+  }
 }).$mount('#app')

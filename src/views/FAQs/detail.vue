@@ -47,12 +47,20 @@ export default {
   },
   mounted(){
     // console.log('seoConfigdetail',this.seoConfig);
-    
-    //获取seo配置
-    getSeoConfig(this.$options.name).then(res=>{
-      // console.log('res',res);
-      res.data&& res.data.meta?this.seoConfig = res.data:'';
+    // console.log('this.$options.name',this.$options.name);
+    this.$axios.get('./tdk.json',{}).then(res=>{
+        const tdks = res.data;
+        tdks.map(x=>{
+            if(x.pageCode == this.$options.name){
+            this.seoConfig = x;
+            }
+        })
     })
+    //获取seo配置
+    // getSeoConfig(this.$options.name).then(res=>{
+    //   // console.log('res',res);
+    //   res.data&& res.data.meta?this.seoConfig = res.data:'';
+    // })
     //   console.log('query',this.$route)
     this.name = this.$route.params.data.question;
     this.detail = this.$route.params.data.answer;

@@ -1,7 +1,7 @@
 const webpack = require('webpack')
 const path = require('path');
 const PrerenderSPAPlugin = require('prerender-spa-plugin')
-// const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
+const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
 
 function resolve(dir) {
     return path.join(__dirname, dir)
@@ -16,8 +16,8 @@ module.exports = {
         port:8888,
         proxy:{
             '/develop':{
-                // target: 'http://cezhitong.com',
-                target: 'http://192.168.0.65:9090',
+                target: 'http://cezhitong.com',
+                // target: 'http://192.168.0.65:9090',
                 changeOrigin:true,
                 ws:true,
                 pathRewrite:{
@@ -41,13 +41,13 @@ module.exports = {
                         routes: ['/', '/evaluating', '/newRate', '/rateResult', '/subsidize',
                             '/costing', '/FAQs', '/about', '/subsidize/detail', '/FAQs/detail',
                         ],
-                        // 这个很重要，如果没有配置这段，也不会进行预编译
-                        // renderer: new Renderer({
-                        //     inject: {foo: 'bar'},
-                        //     headless: false,
-                        //     // 在 main.js 中 document.dispatchEvent(new Event('render-event'))，两者的事件名称要对应上。
-                        //     renderAfterDocumentEvent: 'render-event'
-                        // })
+                        //这个很重要，如果没有配置这段，也不会进行预编译
+                        renderer: new Renderer({
+                            inject: {foo: 'bar'},
+                            headless: false,
+                            // 在 main.js 中 document.dispatchEvent(new Event('render-event'))，两者的事件名称要对应上。
+                            renderAfterDocumentEvent: 'render-event'
+                        })
                     })
                 ]
             }
