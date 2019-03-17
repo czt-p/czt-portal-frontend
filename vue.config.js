@@ -49,7 +49,7 @@ module.exports = {
                         //     renderAfterDocumentEvent: 'render-event'
                         // }),
                         renderer: new PrerenderSPAPlugin.PuppeteerRenderer({ //这样写renderAfterTime生效了
-                            renderAfterTime: 5000
+                            renderAfterTime: 8000
                         })
                     })
                 ]
