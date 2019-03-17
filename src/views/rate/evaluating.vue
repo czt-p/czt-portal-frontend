@@ -51,13 +51,7 @@ export default {
   },
   data () {
     return {
-      // seoConfig:{
-      //   title:'关于我们',
-      //   meta:[
-      //     {name:'description',content:'高企评测，高企问答，高新技术 关于我们'},
-      //     {name:'keywords',content:'高企评测，高企问答，高新技术 关于我们'}
-      //   ]
-      // },
+      seoConfig:(this.$store.state.tdks.filter(x=>x.pageCode===this.$options.name))[0],
       basicQuestions:'',//基础评估问题列表
       dialogConfig:{
         centerDialogVisible:false
@@ -116,18 +110,6 @@ export default {
   },
   mounted(){
     //获取seo配置
-    this.$axios.get('./tdk.json',{}).then(res=>{
-        const tdks = res.data;
-        tdks.map(x=>{
-            if(x.pageCode == this.$options.name){
-            this.seoConfig = x;
-            }
-        })
-    })
-    // getSeoConfig(this.$options.name).then(res=>{
-    //   // console.log('res',res);
-    //   res.data&& res.data.meta?this.seoConfig = res.data:'';
-    // })
     this.loading = true;
     basicQuestions().then(res=>{
       // console.log('res',res)

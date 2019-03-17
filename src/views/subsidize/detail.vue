@@ -24,8 +24,9 @@ export default {
   },
   data () {
     return {
-        name:'',
-        detail:'',
+      seoConfig:(this.$store.state.tdks.filter(x=>x.pageCode===this.$options.name))[0],
+      name:'',
+      detail:'',
     }
   },
   computed: {
@@ -40,20 +41,7 @@ export default {
 
   },
   mounted(){
-    //获取seo配置
-    this.$axios.get('./tdk.json',{}).then(res=>{
-        const tdks = res.data;
-        tdks.map(x=>{
-            if(x.pageCode == this.$options.name){
-            this.seoConfig = x;
-            }
-        })
-    })
-    // getSeoConfig(this.$options.name).then(res=>{
-    //   // console.log('res',res);
-    //   res.data&& res.data.meta?this.seoConfig = res.data:'';
-    // })
-    //   console.log('query',this.$route)
+    
     this.name = this.$route.params.content.name;
     this.detail = this.$route.params.content.content;
   },

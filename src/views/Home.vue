@@ -137,27 +137,28 @@
 import carousel from '@/components/carousel/index.vue'
 import btArea from '@/components/bottom/index.vue'
 import {getSeoConfig} from "@/api/index";
+import { mapGetters } from 'vuex'
 export default {
   metaInfo(){
-    return{
+     return {
       title: this.seoConfig.title, // set a title
       meta: this.seoConfig.meta
-    }
+     }
   },
   name: 'home',
   components: {
     carousel,
     btArea,
   },
+  computed: {
+  // 使用对象展开运算符将 getter 混入 computed 对象中
+    ...mapGetters([
+      'tdks',
+    ]),
+  },
   data() {
     return {
-      // seoConfig:{
-      //   title:'策知通高新技术企业服务平台',
-      //   meta:[
-      //     {name:'description',content:'高企评测，高企问答，高新技术'},
-      //     {name:'keywords',content:'高企评测，高企问答，高新技术'}
-      //   ]
-      // },
+      seoConfig:(this.$store.state.tdks.filter(x=>x.pageCode===this.$options.name))[0],
       activeName: 'first',
       liWidth:'',
       liHeight:'',
@@ -217,8 +218,6 @@ export default {
     }
   },
   mounted(){
-    // console.log('tihs.axios',this.$axios.get)
-    // let screenWidth = window.screen.width-0
     //考虑到移动端，此处不应使用屏幕分辨率的宽，而是使用游览器的宽度
     let screenWidth = document.body.clientWidth - 0
     let screenHeight = window.screen.height - 0
@@ -231,17 +230,15 @@ export default {
     // this.carouseData1.carouselHeight = (screenWidth*640/1440)+'px';
     this.carouseData1.carouselHeight = (screenHeight-210)+'px';
     this.carouseData2.carouselHeight = (screenWidth*260/1440)+'px';
-    // console.log('metaInfo',this.metaInfo)
-
     //获取seo配置
-    this.$axios.get('./tdk.json',{}).then(res=>{
-      const tdks = res.data;
-      tdks.map(x=>{
-        if(x.pageCode == this.$options.name){
-          this.seoConfig = x;
-        }
-      })
-    })
+    // this.$axios.get('./tdk.json',{}).then(res=>{
+    //   const tdks = res.data;
+    //   tdks.map(x=>{
+    //     if(x.pageCode == this.$options.name){
+    //       this.seoConfig = x;
+    //     }
+    //   })
+    // })
     // getSeoConfig(this.$options.name).then(res=>{
     //   res.data&& res.data.meta?this.seoConfig = res.data:'';
     //   // console.log('this.seoConfig ',this.seoConfig );

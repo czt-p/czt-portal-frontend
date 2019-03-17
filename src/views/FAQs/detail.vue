@@ -23,13 +23,7 @@ export default {
   },
   data () {
     return {
-      // seoConfig:{
-      //   title:'问答详情',
-      //   meta:[
-      //     {name:'description',content:'高企评测，高企问答，高新技术 关于我们'},
-      //     {name:'keywords',content:'高企评测，高企问答，高新技术 关于我们'}
-      //   ]
-      // },
+      seoConfig:(this.$store.state.tdks.filter(x=>x.pageCode===this.$options.name))[0],
       name:'',
       detail:'',
     }
@@ -46,22 +40,6 @@ export default {
 
   },
   mounted(){
-    // console.log('seoConfigdetail',this.seoConfig);
-    // console.log('this.$options.name',this.$options.name);
-    this.$axios.get('./tdk.json',{}).then(res=>{
-        const tdks = res.data;
-        tdks.map(x=>{
-            if(x.pageCode == this.$options.name){
-            this.seoConfig = x;
-            }
-        })
-    })
-    //获取seo配置
-    // getSeoConfig(this.$options.name).then(res=>{
-    //   // console.log('res',res);
-    //   res.data&& res.data.meta?this.seoConfig = res.data:'';
-    // })
-    //   console.log('query',this.$route)
     this.name = this.$route.params.data.question;
     this.detail = this.$route.params.data.answer;
   },

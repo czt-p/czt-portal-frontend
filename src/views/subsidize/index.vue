@@ -86,6 +86,7 @@ export default {
   },
   data () {
     return {
+        seoConfig:(this.$store.state.tdks.filter(x=>x.pageCode===this.$options.name))[0],
         companyName:'',
         regionList:[],
         selectedOptions:[],
@@ -160,14 +161,7 @@ export default {
                     }
             })
             }else{
-                // this.$alert('公司名称不能为空。', '提示', {
-                //     confirmButtonText: '确定',
-                //     type:'warning',
-                //     closeOnClickModal:true,
-                //     callback: action => {
-                        
-                //     }
-                // });
+                
                 this.params.pageIndex = 1;
                 this.initLeftContent();
                 flag = true;
@@ -233,23 +227,6 @@ export default {
       }
   },
   mounted(){
-      //获取seo配置
-      //获取seo配置
-        this.$axios.get('./tdk.json',{}).then(res=>{
-            const tdks = res.data;
-            tdks.map(x=>{
-                if(x.pageCode == this.$options.name){
-                this.seoConfig = x;
-                }
-            })
-        })
-        // getSeoConfig(this.$options.name).then(res=>{
-        // // console.log('res',res);
-        // res.data&& res.data.meta?this.seoConfig = res.data:'';
-        // })
-      getRegions().then(res=>{
-          this.regionList = res.data;
-      });
       this.initLeftContent();
       this.initHotSearch();
       // 添加滚动事件，检测滚动到页面底部

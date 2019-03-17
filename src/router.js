@@ -52,7 +52,7 @@ Vue.use(Router)
     },
     {
       path: '/subsidize',//高企资助查询
-      name: 'rateResult',
+      name: 'subsidize',
       meta: {
         title: "高企资助查询", //要现实的title
         show: true               //设置导航隐藏显示

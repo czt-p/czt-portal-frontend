@@ -465,13 +465,7 @@ export default {
       }
     };
     return {
-      // seoConfig:{
-      //   title:'关于我们',
-      //   meta:[
-      //     {name:'description',content:'高企评测，高企问答，高新技术 关于我们'},
-      //     {name:'keywords',content:'高企评测，高企问答，高新技术 关于我们'}
-      //   ]
-      // },
+     seoConfig:(this.$store.state.tdks.filter(x=>x.pageCode===this.$options.name))[0],
       form: {
         consultCost: {
           isCheck: 1,
@@ -777,20 +771,6 @@ export default {
     }
   },
   mounted() {
-    //获取seo配置
-    this.$axios.get('./tdk.json',{}).then(res=>{
-        const tdks = res.data;
-        tdks.map(x=>{
-            if(x.pageCode == this.$options.name){
-            this.seoConfig = x;
-            }
-        })
-    })
-    
-    // getSeoConfig(this.$options.name).then(res=>{
-    //   // console.log('res',res);
-    //   res.data&& res.data.meta?this.seoConfig = res.data:'';
-    // })
     //初始化下拉菜单的选项列表
     let temp = [
       financialGrowth,

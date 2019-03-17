@@ -49,6 +49,7 @@ export default {
   name: 'about',
   data () {
     return {
+      seoConfig:(this.$store.state.tdks.filter(x=>x.pageCode===this.$options.name))[0],
       activeName: 'first',
       mapStyle:{
         height: '400px',
@@ -71,22 +72,7 @@ export default {
     }
   },
   mounted(){
-    // console.log('seoConfig:',this.seoConfig)
-    //获取seo配置
-    this.$axios.get('./tdk.json',{}).then(res=>{
-        const tdks = res.data;
-        tdks.map(x=>{
-            if(x.pageCode == this.$options.name){
-              this.seoConfig = x;
-              console.log('this.seoConfig',this.seoConfig);
-              
-            }
-        })
-    })
-    // getSeoConfig(this.$options.name).then(res=>{
-    //   // console.log('res',res);
-    //   res.data&& res.data.meta?this.seoConfig = res.data:'';
-    // })
+    
   },
 }
 </script>
