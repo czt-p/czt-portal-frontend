@@ -27,7 +27,11 @@ Vue.directive('posInt', function(el){
 });
 
 Vue.config.productionTip = false
-
+// Vue.mixin({
+//   mounted(){
+    
+//   }
+// })
 new Vue({
   router,
   store,
@@ -36,5 +40,26 @@ new Vue({
     document.dispatchEvent(new Event('render-event'));
     // ppmessage();
     
+    //   function ppMessage() {
+    //     var a = document.createElement('script');
+    //     a.type = 'text/javascript';
+    //     a.async = !0;
+    //     a.charset = 'utf-8';
+    //     a.src = 'https://ppmessage.cn/ppcom/assets/pp-library.min.js';
+    //     // a.setAttribute('defer','defer');
+    //     var b = document.getElementsByTagName('script')[0];
+    //     b.parentNode.insertBefore(a, b);
+
+    //   }
+    // ppMessage()
+    // window.ppSettings = {
+    //   app_uuid: '1462aa48-1d25-11e9-b2c7-00163e0c79f6'
+    // };
+    // setTimeout(() => {
+    //   // console.log("document.querySelector('#pp-launcher-button')", document.querySelector(
+    //   // '#pp-launcher-button'))
+    //   if (document.querySelector('#pp-launcher-button')) document.querySelector('#pp-launcher-button').innerHTML =
+    //     '在线客服';
+    // }, 6500);
   }
 }).$mount('#app')

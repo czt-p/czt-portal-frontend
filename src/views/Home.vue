@@ -134,6 +134,7 @@
 
 <script>
 // @ is an alias to /src
+// import ppMessage from '@/assets/ppm.js'
 import carousel from '@/components/carousel/index.vue'
 import btArea from '@/components/bottom/index.vue'
 import {getSeoConfig} from "@/api/index";
@@ -218,6 +219,7 @@ export default {
     }
   },
   mounted(){
+
     //考虑到移动端，此处不应使用屏幕分辨率的宽，而是使用游览器的宽度
     let screenWidth = document.body.clientWidth - 0
     let screenHeight = window.screen.height - 0
@@ -243,6 +245,9 @@ export default {
     //   res.data&& res.data.meta?this.seoConfig = res.data:'';
     //   // console.log('this.seoConfig ',this.seoConfig );
     // })
+    // console.log("$('#pp-container')",document.getElementById('pp-container'),ppMessage);
+    
+    // if(!document.getElementById('pp-container'))ppMessage();
   }
 }
 </script>
