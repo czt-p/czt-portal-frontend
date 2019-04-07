@@ -38,7 +38,7 @@ _axios.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
+console.log('Plugin41',Plugin)
 Plugin.install = function(Vue, options) {
   Vue.axios = _axios;
   window.axios = _axios;
@@ -57,5 +57,5 @@ Plugin.install = function(Vue, options) {
 };
 
 Vue.use(Plugin)
-
+console.log('Plugin60', Plugin)
 export default Plugin;

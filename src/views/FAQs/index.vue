@@ -19,11 +19,11 @@
                 <ul v-loading='loading'>
                     <li v-for='(x,index) in hightTechQList' :key='index'>
                         <div class="title">
-                            <span class='ellipsis'>{{x.question.replace(reg,'')}}</span>
+                            <span class='ellipsis' style='width:83%;'>{{x.question.replace(reg,'')}}</span>
                             <span style="font-size:11px;font-family:SourceHanSansCN-Regular;font-weight:400;color:rgba(133,133,133,1);">{{new Date(x.updatedTime).Format('yyyy-MM-dd hh:mm:ss')}}</span>
                         </div>
                         <div class="content">
-                            <span class='ellipsis'>{{x.answer.replace(reg,'')}}</span>
+                            <span class='ellipsis' style='width:83%;'>{{x.answer.replace(reg,'')}}</span>
                             <el-button type="text" @click='toDetail(x)'>查看详情 》</el-button>
                         </div>
                     </li>

@@ -71,6 +71,9 @@ export default {
                 background-color: #fff;
                 display: inline-block;
                 margin-right: 85px;
+                img{
+                    height:100%;
+                }
             }
             .phoneAdress{
                 display: inline-block;

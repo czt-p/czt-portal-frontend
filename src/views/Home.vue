@@ -98,7 +98,7 @@
       <div class="title">
         <i></i> <span>合作伙伴</span> <i></i>
       </div>
-      <carousel :carouseData='carouseData2'>
+      <carousel :carouseData='carouseData2' class='carousel2'>
         <template>
             <div slot='content1'>
               <div class="imgList" :style='{width:imgListWidth}'>
@@ -110,7 +110,7 @@
               </div>
             </div>
             <div slot='content2'>
-              <div class="imgList" :style='{width:imgListWidth}'>
+              <div class="imgList" :style='{width:imgListWidth}' style='height:100%;'>
                 <ul>
                   <li v-for="(item,index) in 10" :key='index' :style='{height:liHeight,width:liWidth}' class='partnerList'>
                     <img :src="require(`../assets/images/index/parenter/home_logo${index+11}.png`)" alt="">
@@ -219,18 +219,25 @@ export default {
     }
   },
   mounted(){
-
+    function isIE() {
+    if (!!window.ActiveXObject || "ActiveXObject" in window)
+      return true;
+    else{
+      return false;
+    }
+ };
     //考虑到移动端，此处不应使用屏幕分辨率的宽，而是使用游览器的宽度
     let screenWidth = document.body.clientWidth - 0
     let screenHeight = window.screen.height - 0
-    // console.log(screenWidth)
-    this.liWidth = (screenWidth*191/1440)+'px';
-    this.liHeight = (this.liWidth*140/191)+'px';
+    this.liWidth = parseInt(screenWidth*191/1440)+'px';
+    this.liHeight = parseInt(screenWidth*191/1440 * 140/210)+'px';
+    console.log('screenWidth',this.liWidth,this.liHeight)
     this.imgListWidth = (screenWidth*191/1440)*5+'px';
     this.tabHeadWidth = screenWidth*387/1440+'px';
     this.tabHeadHeight = screenWidth*387/1440*88/387+'px';
     // this.carouseData1.carouselHeight = (screenWidth*640/1440)+'px';
-    this.carouseData1.carouselHeight = (screenHeight-210)+'px';
+    // window.navigator
+    isIE()?this.carouseData1.carouselHeight = (screenHeight-160)+'px':this.carouseData1.carouselHeight = (screenHeight-210)+'px';
     this.carouseData2.carouselHeight = (screenWidth*260/1440)+'px';
     //获取seo配置
     // this.$axios.get('./tdk.json',{}).then(res=>{
@@ -461,7 +468,10 @@ export default {
       display: inline-block;
       li{
         display: inline-block;
-      transition: transform .1s;
+        transition: transform .1s;
+        img{
+          height:100%;
+        }
         &:hover{
           transform: scale(1.1);
         }
