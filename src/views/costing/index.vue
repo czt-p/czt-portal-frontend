@@ -237,7 +237,7 @@
                 type="number"
                 :disabled="form.ipCost.isCheck==0"
                 v-posInt
-              ></el-input>个
+              ></el-input><span class='ge'>个</span>
             </el-form-item>
             <el-button
               type="primary"
@@ -374,7 +374,7 @@
                 type="number"
                 :disabled="form.otherCost.isCheck==0"
                 v-posInt
-              ></el-input>个
+              ></el-input><span class='ge'>个</span>
             </el-form-item>
             <el-button
               type="primary"
@@ -816,6 +816,10 @@ export default {
     }
   }
 .costing {
+  .ge{
+    position:absolute;
+    right:-5px;
+  }
   .wrap {
     width: 90%;
     margin: 60px auto;

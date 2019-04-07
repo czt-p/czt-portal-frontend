@@ -227,6 +227,9 @@ export default {
       }
   },
   mounted(){
+      getRegions().then(res=>{
+          this.regionList = res.data;
+      });
       this.initLeftContent();
       this.initHotSearch();
       // 添加滚动事件，检测滚动到页面底部

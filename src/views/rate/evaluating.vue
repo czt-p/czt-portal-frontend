@@ -127,6 +127,9 @@ export default {
   background-color: #fff;
   .yy-steps{
     padding: 70px;
+    .el-step{
+      width:33.3%;
+    }
   }
   .questions{
     text-align: left;
