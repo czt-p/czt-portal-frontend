@@ -1,6 +1,6 @@
 <template>
   <div class='root'>
-    <el-carousel v-if='carouseData.imgList.length>0' :autoplay='false' :height="carouseData.carouselHeight" :arrow='carouseData.arrow'>
+    <el-carousel v-if='carouseData.imgList.length>0' :height="carouseData.carouselHeight" :arrow='carouseData.arrow'>
         <el-carousel-item v-for="(item,index) in carouseData.imgList" :key="index">
         <img :src="item.src" alt="">
         <slot name='content1' v-if='index === 0'></slot>
