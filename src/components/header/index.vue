@@ -47,25 +47,15 @@
         watch:{
             '$route':{
                 handler:function(val){
-                    // console.log('route',val)
                     this.watchScroll();
                     this.activeIndex = val.path;
                     if(val.path == '/newRate' || val.path == '/rateResult'){
                         this.activeIndex = '/evaluating';
                     }
-                    // if(val.path == '/' || val.path == '/home'){
-                    //     this.menuColor = '#fff';
-                    //     this.logoUrl = require('../../assets/images/index/memu_logo.png')
-                    //     $('#app').css({'paddingTop':'0px'});
-                    //     $('.top').css({'background':'transparent'});
-                    //     $('.lineF').show();
-                    // }else{
-                        this.menuColor = '#353C45';
-                        // this.logoUrl = require('../../assets/images/index/logo2.png')
-                        $('.lineF').hide();
-                        $('#app').css({'paddingTop':'70px'});
-                        $('.top').css({'background':'#fff'});
-                    // }
+                    this.menuColor = '#353C45';
+                    $('.lineF').hide();
+                    $('#app').css({'paddingTop':'70px'});
+                    $('.top').css({'background':'#fff'});
                 }
             }
         },
@@ -80,17 +70,9 @@
             },
             watchScroll(){
                 if(this.$route.meta.title == '首页'){
-                    // if(window.scrollY >= 100){
-                    //     $('.top').css({'background':'#fff'});
-                    //     this.logoUrl = require('../../assets/images/index/logo2.png')
-                    //     $('.top .menu li').css({'color':'#353C45'});
-                    //     $('.el-menu-item.is-active').css({'color':'#0D70EE'})
-                    // }else{
-                        // this.logoUrl = require('../../assets/images/index/memu_logo2.png')
-                        $('.top').css({'background':'#fff'});
-                        $('.top .menu li').css({'color':'#353C45'});
-                        $('.el-menu-item.is-active').css({'color':'#0D70EE'})
-                    // }
+                    $('.top').css({'background':'#fff'});
+                    $('.top .menu li').css({'color':'#353C45'});
+                    $('.el-menu-item.is-active').css({'color':'#0D70EE'})
                 }
             }
         },

@@ -29,7 +29,7 @@
         </el-tab-pane>
       </el-tabs>
     </div>
-    <btArea></btArea>
+    <!-- <btArea></btArea> -->
     
   </div>
 </template>

@@ -113,7 +113,7 @@
     <div class="btnArea">
       <el-button @click="submitStep2">查看评估报告</el-button>
     </div>
-    <btArea></btArea>
+    <!-- <btArea></btArea> -->
   </div>
 </template>
 

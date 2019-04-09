@@ -2,26 +2,21 @@
   <div id="app">
     <topHeader></topHeader>
     <router-view></router-view>
+    <btArea></btArea>
   </div>
 </template>
 
 <script>
 import topHeader from './components/header/index.vue'
+import btArea from '@/components/bottom/index.vue';
 export default {
   name: 'app',
   components: {
     topHeader,
+    btArea
   },
   watch:{
-    // '$route':{
-    //   handler:function(val){
-    //     if(val.meta.title!='首页'){
-    //       $('#app').css({'paddingTop':'70px'});
-    //     }else{
-    //       $('#app').css({'paddingTop':'0px'});
-    //     }
-    //   }
-    // }
+
   },
   mounted(){
     

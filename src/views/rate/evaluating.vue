@@ -32,7 +32,7 @@
         </div>
       </template>
     </yyDialog>
-    <btArea></btArea>
+    <!-- <btArea></btArea> -->
   </div>
 </template>
 

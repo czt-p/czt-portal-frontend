@@ -128,7 +128,7 @@
         </ul>
       </div> -->
     </div>
-    <btArea></btArea>
+    <!-- <btArea></btArea> -->
   </div>
 </template>
 
@@ -478,6 +478,9 @@ export default {
       }
     } 
   }
+  // .firstP{
+  //   margin-top:70px;
+  // }
 .extend_rightContent{
   padding-left: 15%;
   box-sizing: border-box;

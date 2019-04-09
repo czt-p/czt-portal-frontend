@@ -5,7 +5,7 @@
         <div class='title' v-html='name'></div>
         <p class='content ql-editor' v-html='detail'></p>
       </div>
-      <btArea></btArea>
+      <!-- <btArea></btArea> -->
   </div>
 </template>
 

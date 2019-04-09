@@ -37,7 +37,7 @@
       </template>
     </yyDialog>
     <!-- <el-button type="text" @click="dialogConfig.centerDialogVisible = true" >点击打开 Dialog</el-button> -->
-    <btArea></btArea>
+    <!-- <btArea></btArea> -->
   </div>
 </template>
 

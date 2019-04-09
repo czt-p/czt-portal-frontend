@@ -400,7 +400,7 @@
         <el-button class="calc" @click="calc">开始核算</el-button>
       </div>
     </div>
-    <btArea></btArea>
+    <!-- <btArea></btArea> -->
     <yyDialog :dialogConfig="dialogConfig" ref="resultDialog">
       <template slot="bodyArea">
         <!-- <div style='text-align: center;font-size:24px;font-family:SourceHanSansCN-Bold;font-weight:bold;color:rgba(53,60,69,1);'>
